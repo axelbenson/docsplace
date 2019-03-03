@@ -1,0 +1,97 @@
+<!--Navbar-->
+<mdb-navbar SideClass="navbar navbar-expand-xl navbar-dark primary-color fixed-top scrolling-navbar" id='nav'>
+
+  <!-- Navbar brand -->
+  <mdb-navbar-brand>
+      <img src="https://res.cloudinary.com/howtoru/image/upload/img/logo.png" width="65" height="65" class="d-inline-block align-top" alt="">
+    <a class="navbar-brand" routerLink="/main">
+    <h1><span>&nbsp;</span>HowTo</h1>
+  </a>
+</mdb-navbar-brand>
+
+  <!-- Collapsible content -->
+  <links>
+
+      <!-- Links -->
+      <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+              <a class="nav-link waves-light" mdbWavesEffect routerLink="/main">{{ui.home}}</a>
+          </li>
+          <li class="nav-item">
+              <a class="nav-link waves-light" mdbWavesEffect routerLink="/users">{{ui.users}}</a>
+          </li>
+
+          <!-- Dropdown -->
+          <li class="nav-item dropdown" dropdown>
+              <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-light" mdbWavesEffect>
+              {{ui.instructions}}<span class="caret"></span></a>
+              <div *dropdownMenu class="dropdown-menu dropdown dropdown-primary" role="menu">
+                <a class="dropdown-item waves-light" mdbWavesEffect routerLink="/instructions">{{ui.all}}</a>
+                  <div class="divider dropdown-divider"></div>
+                  <a class="dropdown-item waves-light" mdbWavesEffect [routerLink]="['/category/hobbies']">{{ui.hobbies}}</a>
+                  <a class="dropdown-item waves-light" mdbWavesEffect [routerLink]="['/category/apartment']">{{ui.apartment}}</a>
+                  <a class="dropdown-item waves-light" mdbWavesEffect [routerLink]="['/category/sport']">{{ui.sport}}</a>
+                  <a class="dropdown-item waves-light" mdbWavesEffect [routerLink]="['/category/internet']">{{ui.internet}}</a>
+                  <a class="dropdown-item waves-light" mdbWavesEffect [routerLink]="['/category/auto']">{{ui.auto}}</a>
+                  <a class="dropdown-item waves-light" mdbWavesEffect [routerLink]="['/category/health']">{{ui.health}}</a>
+                  <a class="dropdown-item waves-light" mdbWavesEffect [routerLink]="['/category/food']">{{ui.food}}</a>
+                  <a class="dropdown-item waves-light" mdbWavesEffect [routerLink]="['/category/fashion']">{{ui.fashion}}</a>
+                  <a class="dropdown-item waves-light" mdbWavesEffect [routerLink]="['/category/engineering']">{{ui.engineering}}</a>
+                  <a class="dropdown-item waves-light" mdbWavesEffect [routerLink]="['/category/other']">{{ui.other}}</a>
+              </div>
+          </li>   
+      </ul>
+      <!-- Links -->
+      
+      <div >
+    
+          
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item" >
+                <a class="nav-link waves-light" (click)="search = true;" *ngIf='!search' mdbWavesEffect><i class="fa fa-search prefix white-text"></i> {{ui.search}}</a>
+            </li>
+          </ul>
+    </div>
+            <div class="md-form mt-0" *ngIf='search' id='search'>
+                <i class="fa fa-remove prefix white-text" (click)="search = false;"></i>
+                <input class="form-control mr-sm-2" type="text" (onblur)="search = false;" (keyup)="keypress($event.keyCode, $event)" placeholder="{{ui.search}}">
+            </div>
+    <div *ngIf='!search'>
+      <div id='forms' *ngIf='!isUserLoggedIn'>
+          
+          <ul class="navbar-nav mr-auto">
+              <li class="nav-item"><app-authorization-form></app-authorization-form></li>
+              <li class="nav-item"><button id='signup-button' type="button"mdbBtn rounded="true"  mdbWavesEffect routerLink="/signup">{{ui.signUp}}</button></li>
+            </ul>
+      </div>
+      <div id='forms2' *ngIf='isUserLoggedIn'>
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link waves-light" mdbWavesEffect [routerLink]="['/user',login]"><i class="fa fa-user prefix white-text"></i><strong *ngIf="suMode">su: </strong> {{login}}</a>
+            </li>
+            <li class="nav-item" *ngIf="su">
+                    <a class="nav-link waves-light" mdbWavesEffect routerLink="/admin"><i class="fa fa-gear prefix white-text"></i> {{ui.administer}}</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link waves-light" *ngIf="!suMode" mdbWavesEffect (click)='logout()' id='logout'><i class="fa fa-sign-out prefix white-text"> </i>{{ui.logOut}}</a>
+              <a class="nav-link waves-light" *ngIf="suMode" mdbWavesEffect (click)='leave()' id='leave'><i class="fa fa-sign-out prefix white-text"> </i>{{ui.leave}} {{login}}</a>
+            </li>
+        </ul>
+      </div>
+      
+    </div>
+
+<!-- Search form -->
+<div >
+        <ul class="navbar-nav mr-auto">
+            <li>
+            <a class="nav-link waves-light" *ngIf="(language == 'ru') || !language" mdbWavesEffect (click)="changeLanguage('en')"><i class="fa fa-language prefix white-text"> </i> EN</a>
+            <a class="nav-link waves-light" *ngIf="language == 'en'" mdbWavesEffect (click)="changeLanguage('ru')"><i class="fa fa-language prefix white-text"> </i> RU</a> 
+            </li>  
+          </ul>
+    </div> 
+  </links>
+  <!-- Collapsible content --> 
+</mdb-navbar>
+<!--/.Navbar-->
+

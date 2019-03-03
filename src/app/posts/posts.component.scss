@@ -1,0 +1,35 @@
+#posts {
+    margin-left: 0px;
+    margin-right: 0px;
+    margin-top: 0px;
+    padding-top: 20px;
+    padding-bottom: 0px;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-bottom: 0px;
+}
+#post:hover {
+    border-bottom: 2px solid #007bff;
+}
+p {
+    margin-bottom: 10px;
+    font-size: 14px;
+}
+
+#post:hover h4 {
+    color: #007bff;
+}
+h4 {
+    color: grey;
+}
+.row {
+    margin-right: 0px;
+    margin-top: 0px; 
+}
+.view {
+    box-shadow: 0 2px 15px 0 rgba(0, 0, 0, 0.16), 
+    0 2px 15px 0 rgba(0, 0, 0, 0.12);
+}
+#postTitle {
+    font-weight: 300 !important;
+}

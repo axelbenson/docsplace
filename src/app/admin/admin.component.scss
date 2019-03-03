@@ -1,0 +1,78 @@
+section {
+    margin-top: 120px;
+}
+table {
+    width: 100%;
+    box-shadow: none;
+    
+}
+.mat-cell {
+    font-size: 20px;
+}
+@media (max-width: 900px) {
+    .mat-cell {
+        font-size: 14px;
+    }
+}
+h4 {
+    text-transform: uppercase;
+}
+/deep/ .mat-checkbox-checked.mat-accent .mat-checkbox-background, .mat-checkbox-indeterminate.mat-accent .mat-checkbox-background {
+    background-color: #007bff !important;
+}
+/deep/ div.mat-checkbox-background {
+    background-color:#eee !important;
+}
+#header {
+    position: sticky;
+}
+#toolbar {
+    margin: 0 auto;
+    font-size: 40px;
+    position: sticky;
+    top: 80px; 
+    z-index: 999;
+    background-color: white;
+    border-bottom: 2px solid #007bff;
+}
+i {
+    padding: 20px;
+    cursor: pointer;
+}
+i:hover {
+    border-bottom: 2px solid #007bff;
+}
+#spinner {
+    padding-top: 50vh;
+}
+tr:hover {
+    background-color: #eee;
+}
+@keyframes ui-progress-spinner-color {
+    100%,
+    0% {
+        stroke: #0057e7;
+    }
+    40% {
+        stroke: #0057e7;
+    }
+    66% {
+        stroke: #0057e7;
+    }
+    80%,
+    90% {
+        stroke: #0057e7;
+    }
+}
+#login {
+    cursor: pointer;
+}
+#login:hover {
+    color: #007bff;
+}
+/deep/ .tooltip-inner {
+    background-color: #007bff !important;
+}
+/deep/ .tooltip-arrow {
+    border-bottom: 7px solid #007bff !important;
+}

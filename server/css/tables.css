@@ -1,0 +1,28 @@
+#main_table {
+  cursor: default;
+  border: 1px solid #007bff;
+  font-size: 14px;
+  background: white;
+  max-width: 70%;
+  width: 70%;
+  border-collapse: collapse;
+  text-align: left;
+  margin: auto;
+}
+#main_table th {
+  font-weight: normal;
+  color: #007bff;
+  border-bottom: 2px solid #007bff;
+  padding: 10px 8px;
+}
+#main_table td {
+  color: #007bff;
+  padding: 9px 8px;
+  transition: .3s linear;
+}
+#main_table tr:hover td {color: #6699ff; background: #DCDCDC;}
+#block, #unblock, #delete {
+text-align: center; 
+width: 140px; 
+font-size: 15px;
+}

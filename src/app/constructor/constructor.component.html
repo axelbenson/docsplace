@@ -1,0 +1,145 @@
+<section class='animated slideInUp'>
+    <p><img src='https://res.cloudinary.com/howtoru/image/upload/v1534550394/img/logo.png'/></p>
+    <h4 class="text-center" id='posts'>{{ui.constructorTitle}} <strong>HowTo</strong></h4>
+    
+    <div class="md-form">
+        <i class="fa fa-user prefix grey-text"></i>
+        <input type="text" [formControl]="name" id="form-name" class="form-control" mdbInputDirective>
+        <label for="form-name">{{ui.theNameOfInstruction}}</label>
+    </div>
+    
+    <mat-form-field>
+        <mat-select placeholder="{{ui.chooseACategory}}" id='form-section' [formControl]="section">
+          <mat-option *ngFor="let section of sections" [value]="section.value">
+            {{section.label}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field class="example-chip-list">
+          <mat-chip-list #chipList>
+            <mat-chip *ngFor="let tag of tags" [selectable]="selectable"
+                     [removable]="removable" (removed)="remove(tag)">
+              {{tag}}
+              <mat-icon matChipRemove *ngIf="removable"><i class="fa fa-close" aria-hidden="true"></i></mat-icon>
+            </mat-chip>
+            <input placeholder="{{ui.addHashtag}}"
+                   [matChipInputFor]="chipList"
+                   [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                   [matChipInputAddOnBlur]="addOnBlur"
+                   (matChipInputTokenEnd)="add($event)">
+          </mat-chip-list>
+        </mat-form-field>
+
+    <div class="md-form">
+        <i class="fa fa-edit prefix grey-text"></i>
+       <textarea type="text" id="form7" [formControl]="short" class="md-textarea md-textarea-auto form-control" mdbInputDirective></textarea>
+       <label for="form7">{{ui.shortDescription}}</label>
+    </div> 
+    
+    <div class="md-form" id='full_desc'>
+       <textarea type="text" id="form8" [formControl]="full" class="md-textarea md-textarea-auto form-control" mdbInputDirective></textarea>
+       <label for="form8">{{ui.fullDescription}}</label>
+    </div> 
+
+    <div class="md-form" >
+        <i class="fa fa-cart-plus prefix grey-text"></i>
+        <textarea type="text" id="form9" [formControl]="needed" placeholder="{{ui.forThisWeNeed}}" class="md-textarea md-textarea-auto form-control" mdbInputDirective></textarea>
+        <label for="form9">{{ui.neededThings}}</label>
+     </div> 
+
+    <div class="md-form">
+        <i class="fa fa-youtube prefix grey-text"></i>
+        <input type="text" [formControl]="videoLink" id="form-videoLink" class="form-control" mdbInputDirective>
+        <label for="form-videoLink">{{ui.youtubeLink}}</label>
+    </div>
+
+     <div class="text-center">
+        <div class="form-group file-area">
+            <input type="file" required="required" (change)="onFileUpload($event)"/>
+            <div class="file-dummy">
+              <div class="success" hidden>{{ui.canContinue}}</div>
+              <div class="default" >{{ui.chooseTheMainPicture}}</div>
+            </div>
+        </div>
+    </div>
+
+    <mat-vertical-stepper #stepper></mat-vertical-stepper>
+    <div id="step" class='animated slideInRight'> 
+        <mat-expansion-panel id='panel'>
+            <mat-expansion-panel-header  class="mat-expansion-panel-header ng-tns-c10-5" id="head" role="button">
+              <mat-panel-title>
+                  <div ng-reflect-ng-switch="number" class="mat-step-icon" id='circle'>
+                      <span class="ng-star-inserted">1</span>
+                  </div>   
+              </mat-panel-title>
+              <mat-panel-description>
+                  <div class="md-form" id='stepp'>
+                    <p>{{ui.stepTitle}}</p>
+                    <input type="text" id="form-step-name" class="form-control" (keydown)="handleSpacebar($event)" mdbInputDirective>
+
+                  </div>
+              </mat-panel-description>
+            </mat-expansion-panel-header>
+          </mat-expansion-panel>
+        
+          <div class="mat-vertical-content-container mat-stepper-vertical-line">
+              <div class="mat-vertical-stepper-content ">
+                <div class="mat-vertical-content">
+                  <div class="ng-star-inserted">
+                      <div class="md-form" id='step_desc'>
+                        <p>{{ui.stepDescription}}</p>
+                        <textarea type="text" id="form10" name='step_desc' required class="md-textarea md-textarea-auto form-control" (keyup)='autogrow($event)' mdbInputDirective></textarea> 
+                        </div> 
+
+                       <div class="text-center">
+                          <div class="form-group file-area">
+                              <input type="file" name='pic'/>
+                              <div class="file-dummy">
+                                <div class="success" hidden>{{ui.canContinue}}</div>
+                                <div class="default">{{ui.chooseAPicture}}</div>
+                              </div>
+                          </div>
+                      </div> 
+                    </div>
+                  </div>
+                </div>
+          </div>
+        </div>
+
+        <div id='add_step' (click)="add_step()"> 
+            <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                  <mat-panel-title>
+                      <div ng-reflect-ng-switch="number" class="mat-step-icon" id='circle'>
+                          <span class="ng-star-inserted">+</span>
+                      </div>   
+                  </mat-panel-title>
+                  <mat-panel-description>
+                      <h5>{{ui.addStep}}</h5>
+                  </mat-panel-description>
+                </mat-expansion-panel-header>
+            
+              
+  
+              </mat-expansion-panel>
+            
+              <div class="mat-vertical-content-container">
+                  <div class="mat-vertical-stepper-content ">
+                    <div class="mat-vertical-content">
+                      <div class="ng-star-inserted">
+
+                        </div>
+                      </div>
+                    </div>
+              </div>
+        </div>
+        <p-progressBar mode="indeterminate" [style]="{'height': '6px'}" *ngIf='wait'></p-progressBar>
+        <div id='button'>
+            <button mdbBtn color="blue" class="waves-light" id='button' (click)="send()" mdbWavesEffect>{{ui.finish}}</button>
+        </div>
+        <p-toast position="bottom-center" life='10000'></p-toast>
+        <hr/>
+        
+   <!-- <hr/> -->
+</section>

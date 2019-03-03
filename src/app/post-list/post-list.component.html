@@ -1,0 +1,7 @@
+<section class='animated slideInUp' [hidden]='!isLoaded'>
+<h4 class="text-center" id='posts'>{{ui.instructions}}</h4>
+<app-posts [(postCards)]="postCards"></app-posts>
+</section>
+<div class='text-center' id='spinner' *ngIf='!isLoaded'>
+        <p-progressSpinner fill="white"></p-progressSpinner>
+</div>

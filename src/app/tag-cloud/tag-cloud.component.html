@@ -1,0 +1,10 @@
+<div (window:resize)="reDraw()">
+    <angular-tag-cloud id='cloud'
+      (clicked)="route($event)"
+      [data]="data"
+      [width]="options.width"
+      [height]="options.height"
+      [overflow]="options.overflow"
+      [zoomOnHover]="zoomOnHoverOptions">
+    </angular-tag-cloud>
+  </div>

@@ -1,0 +1,120 @@
+<section class='animated slideInUp' *ngIf='isLoaded'>
+<div class="container" id='page'>
+    <!-- Grid column -->
+
+        <div id='info1'>
+            <h5><text class="grey-text">{{ui.login}}: </text>{{userCard.login}}</h5>
+            <h5><text class="grey-text">{{ui.email}}: </text>{{userCard.email}}</h5>
+            <h5><text class="grey-text">{{ui.raiting}}: ★ </text>{{userCard.raiting}}</h5>
+        </div>
+        <div id='avatar' *ngIf='!self'>
+                <img src="{{userCard.avatar}}" class="rounded-circle z-depth-1 img-fluid">
+        </div>
+        <div id='avatar' class='xoverlay x-simple' *ngIf='self'>
+                <img src="{{userCard.avatar}}" class="rounded-circle z-depth-1 img-fluid x-img-main">
+                <div class="xoverlay-box">
+                        <div class="xoverlay-data x-icon-rotatezoom">
+                            <span class="x-white"><a (click)='frame.show(); clean()'><i class="fa fa-pencil"></i></a></span>
+                        </div>
+                </div>
+        </div>
+        <div id='info2'>
+            <h5><text class="grey-text">{{ui.name}}: </text>{{userCard.name}}</h5>
+            <h5><text class="grey-text">{{ui.location}}: </text>{{userCard.location}}</h5>
+            <h5><text class="grey-text">{{ui.age}}: </text>{{userCard.age}}</h5>
+        </div>
+
+    <!-- Grid column -->
+    
+
+</div>
+<div id='medals'>
+	<div *ngIf='laurel'>
+		<img mdbTooltip="{{ui.laurel}}" placement="bottom" src="https://res.cloudinary.com/howtoru/image/upload/img/1.png" width="65" height="65" class="d-inline-block align-top" alt="">
+	</div>
+	<div *ngIf='champion'>
+		<img mdbTooltip="{{ui.champion}}" placement="bottom" src="https://res.cloudinary.com/howtoru/image/upload/img/4.png" width="65" height="65" class="d-inline-block align-top" alt="">
+	</div>
+	<div *ngIf='star'>
+		<img mdbTooltip="{{ui.star}}" placement="bottom" src="https://res.cloudinary.com/howtoru/image/upload/img/5.png" width="65" height="65" class="d-inline-block align-top" alt="">
+	</div>
+	<div *ngIf='beginner'>
+		<img mdbTooltip="{{ui.beginner}}" placement="bottom" src="https://res.cloudinary.com/howtoru/image/upload/img/6.png" width="65" height="65" class="d-inline-block align-top" alt="">
+	</div>
+	<div *ngIf='commentator'>
+		<img mdbTooltip="{{ui.commentator}}" placement="bottom" src="https://res.cloudinary.com/howtoru/image/upload/img/7.png" width="65" height="65" class="d-inline-block align-top" alt="">
+	</div>            
+</div>
+<br/>
+<h4 class="text-center" id='posts'>{{ui.instructions}}</h4>
+<app-editable-posts [(postCards)]="postCards" *ngIf='self'></app-editable-posts>
+<app-posts [(postCards)]="postCards" *ngIf='!self'></app-posts>
+
+<div mdbModal #frame="mdbModal" class="modal fade right" id="frameModalTop" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  aria-hidden="true" [config]="{backdrop: false, ignoreBackdropClick: true}">
+  <div id='bio' class="modal-dialog modal-full-height modal-right modal-notify modal-info" role="document">
+    <div class="modal-content">
+      <!--Header-->
+      <div class="modal-header">
+        <p class="heading lead">{{ui.bioEditor}}
+        </p>
+
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="frame.hide()">
+          <span aria-hidden="true" class="white-text">×</span>
+        </button>
+      </div>
+
+      <!--Body-->
+      <div class="modal-body">
+          <div>
+            <div class="text-center bio avatar">
+                    <img src="{{userCard.avatar}}" class="rounded-circle z-depth-1 img-fluid" alt="Sample avatar">
+            </div>
+            
+            <div class="text-center bio drop">
+                    <div class="form-group file-area">
+                        <input type="file" name='pic' (change)="onFileUpload($event)"/>
+                        <div class="file-dummy">
+                        <div class="success" hidden>{{ui.canContinue}}</div>
+                        <div class="default">{{ui.chooseANewFile}}</div>
+                        </div>
+                    </div>
+            </div>
+        </div>  
+        <br/>
+        <hr>
+        <p class="text-center">
+          <strong>{{ui.publicInfo}}</strong>
+        </p>
+        <div class="md-form">
+                <i class="fa fa-user prefix grey-text"></i>
+                <input type="text" [formControl]="name" id="form-name" value="{{userCard.name}}" class="form-control" mdbInputDirective>
+                <label for="form-name">{{ui.yourName}}</label>
+        </div>
+        <div class="md-form">
+                <i class="fa fa-map-marker prefix grey-text"></i>
+                <input type="text" [formControl]="location" id="form-location" value="{{userCard.location}}" class="form-control" mdbInputDirective>
+                <label for="form-name">{{ui.yourLocation}}</label>
+        </div>
+        <div class="md-form">
+                <i class="fa fa-calendar prefix grey-text"></i>
+                <input type="text" [formControl]="age" id="form-age" value="{{userCard.age}}" class="form-control" mdbInputDirective>
+                <label for="form-name">{{ui.yourAge}}</label>
+        </div>
+
+      </div>
+
+      <!--Footer-->
+      <div class="modal-footer justify-content-center">
+        <a type="button" mdbBtn color="primary" class="waves-light" (click)='send()' mdbWavesEffect>{{ui.save}}</a>
+        <a type="button" mdbBtn color="primary" outline="true" class="waves-effect" data-dismiss="modal" mdbWavesEffect (click)="frame.hide()">{{ui.cancel}}</a>
+      </div>
+      <p-progressBar mode="indeterminate" [style]="{'height': '6px'}" *ngIf='wait'></p-progressBar>
+    </div>
+  </div>
+</div>
+</section>
+<div class='text-center' id='spinner' *ngIf='!isLoaded'>
+        <p-progressSpinner fill="white"></p-progressSpinner>
+</div>
+<p-toast position="bottom-center" life='10000'></p-toast>

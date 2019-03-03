@@ -1,0 +1,49 @@
+#user-list {
+    padding-top: 40px;
+    margin-left: 10px;
+    margin-right: 10px;
+    transition: 3s;
+}
+
+img {
+    max-width: 150px;
+}
+#user {
+    max-width: 250px;
+    cursor: pointer;
+}
+#user:hover h5{
+    color: #007bff;
+}
+#user h5 {
+    color: grey;
+}
+#user:hover{
+    border-bottom: 2px solid #007bff;
+}
+.row {
+    margin-left: 0px;
+    margin-right: 0px;
+}
+@keyframes ui-progress-spinner-color {
+    100%,
+    0% {
+        stroke: #0057e7;
+    }
+    40% {
+        stroke: #0057e7;
+    }
+    66% {
+        stroke: #0057e7;
+    }
+    80%,
+    90% {
+        stroke: #0057e7;
+    }
+}
+#spinner {
+    padding-top: 50vh;
+}
+h4 {
+    text-transform: uppercase;
+}

@@ -1,0 +1,14 @@
+:host ::ng-deep .ui-message,
+        :host ::ng-deep .ui-inputtext {
+            margin-right: .25em;
+        }
+#login-button {
+    background: none;
+    box-shadow: none;
+}
+#login-button:hover {
+    color: #eee;
+}
+h5 {
+    text-transform: uppercase;
+}
