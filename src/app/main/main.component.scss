@@ -1,0 +1,49 @@
+#top-users {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 80px;
+    margin-bottom: 0px;
+}
+#medals {
+    margin-top: 120px;
+    margin-bottom: 0px;
+    margin-left: auto;
+    margin-right: auto;
+}
+#posts {
+    margin-top: 120px; 
+}
+img {
+    margin-bottom: 20px;
+}
+.row {
+    margin-left: 0px;
+    margin-right: 0px;
+}
+@keyframes ui-progress-spinner-color {
+    100%,
+    0% {
+        stroke: #0057e7;
+    }
+    40% {
+        stroke: #0057e7;
+    }
+    66% {
+        stroke: #0057e7;
+    }
+    80%,
+    90% {
+        stroke: #0057e7;
+    }
+}
+#spinner {
+    padding-top: 50vh;
+}
+.flex {
+    display: flex;
+}
+@media (max-width: 992px) {
+    #medals {
+        display: none;
+    }
+}

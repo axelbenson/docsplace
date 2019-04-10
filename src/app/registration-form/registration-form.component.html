@@ -1,0 +1,71 @@
+<!-- Register form -->
+<h4 class="text-center" id='posts'>{{ui.signUp}}</h4>
+  <div class="row justify-content-center">
+    <div class='col-md-6' if='regf'>    
+    <div class="md-form">
+      <i class="fa fa-user prefix grey-text"></i>
+      <input type="text" [formControl]="login" id="form-login" class="form-control" mdbInputDirective>
+      <label for="form-login">{{ui.yourLogin}}</label>
+    </div>
+
+    <div class="md-form">
+      <i class="fa fa-envelope prefix grey-text"></i>
+      <input type="text" [formControl]="email" id="form-email" class="form-control" mdbInputDirective>
+      <label for="form-email">{{ui.yourEmail}}</label>
+    </div>
+
+    <div class="md-form">
+        <i class="fa fa-address-card-o prefix grey-text"></i>
+        <input type="text" [formControl]="name" id="form-name" class="form-control" mdbInputDirective>
+        <label for="form-name">{{ui.yourName}}</label>
+    </div>
+
+    <div class="md-form">
+          <i class="fa fa-calendar-o prefix grey-text"></i>
+          <input type="text" [formControl]="age" id="form-age" class="form-control" mdbInputDirective>
+          <label for="form-age">{{ui.yourAge}}</label>
+    </div>
+
+    <div class="md-form">
+        <i class="fa fa-location-arrow prefix grey-text"></i>
+        <input type="text" [formControl]="location" id="form-location" class="form-control" mdbInputDirective>
+        <label for="form-location">{{ui.yourLocation}}</label>
+  </div>
+  
+    <div class="md-form">
+      <i class="fa fa-lock prefix grey-text"></i>
+      <input type="password" [formControl]="password" id="form-password" class="form-control" mdbInputDirective>
+      <label for="form-password">{{ui.yourPassword}}</label>
+    </div>
+
+    <div class="md-form">
+        <i class="fa fa-lock prefix grey-text"></i>
+        <input type="password" [formControl]="confirmPassword" id="form-confirm-password" class="form-control" mdbInputDirective>
+        <label for="form-confirm-password">{{ui.confirmPassword}}</label>
+    </div>
+
+    <div class="text-center">
+        <div class="form-group file-area">
+            <input type="file" required="required" (change)="onFileUpload($event)"/>
+            <div class="file-dummy">
+              <div class="success" *ngIf="fileLoaded">{{ui.canContinue}}</div>
+              <div class="default" *ngIf="!fileLoaded">{{ui.chooseYourAvatar}}</div>
+            </div>
+        </div>
+    </div>
+    <p-progressBar mode="indeterminate" [style]="{'height': '6px', 'margin':'0 auto', 'width': '400px'}" *ngIf='wait'></p-progressBar>
+    <div class="text-center">
+        <button mdbBtn color="blue" class="waves-light" id='button' (click)="send()" mdbWavesEffect>{{ui.signUp}}</button>
+    </div>
+    <p-toast position="bottom-center" life='10000'></p-toast>
+    </div>
+    <div class='col-md-6 align-middle' id='info'>
+      <p class='text-center'>{{ui.greetingsLine1}}</p>
+      <p class='text-center'>{{ui.greetingsLine2}}</p>
+      <p class='text-center'>{{ui.greetingsLine3}}</p>
+      <p class='text-center'><img id='profile' src='https://res.cloudinary.com/howtoru/image/upload/img/profile.png'/></p>
+      <p class='text-center'>{{ui.greetingsLine4}}</p>
+      <p class='text-center'>{{ui.greetingsLine5}}</p>
+    </div>
+  </div>
+  <!-- Register form -->

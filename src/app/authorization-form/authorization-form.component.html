@@ -1,0 +1,37 @@
+<button type="button" id='login-button' mdbBtn rounded="true" data-toggle="modal" data-target="#basicExample" (click)="frame.show()"
+  mdbWavesEffect>{{ui.signIn}}</button>
+
+<div mdbModal #frame="mdbModal" class="modal fade left" id="frameModalTop" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  aria-hidden="true" [config]="{backdrop: false, ignoreBackdropClick: true}" [hidden]="hide_modal" (keyup)="keypress($event.keyCode)">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h5 class="modal-title w-100">{{ui.signIn}}</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="frame.hide()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <i class="fa fa-user prefix grey-text" aria-hidden="true"></i>
+          <input type="email" id="defaultForm-email" [formControl]="login" class="form-control validate" mdbInputDirective>
+          <label data-error="wrong" data-success="right" for="defaultForm-email">{{ui.yourLogin}}</label>
+        </div>
+
+        <div class="md-form mb-4">
+          <i class="fa fa-lock prefix grey-text"></i>
+          <input type="password" id="defaultForm-pass" [formControl]="password" class="form-control validate" mdbInputDirective>
+          <label data-error="wrong" data-success="right" for="defaultForm-pass">{{ui.yourPassword}}</label>
+        </div>
+
+      </div>
+      <div class="modal-footer d-flex justify-content-center">
+        <button mdbBtn color="default" class="waves-light" (click)="send()" mdbWavesEffect>{{ui.signIn}}</button>
+        
+      </div>
+      <p-toast position="top-center" life='10000'></p-toast>
+      <p-progressBar mode="indeterminate" [style]="{'height': '6px'}" *ngIf='wait'></p-progressBar>
+    </div>
+  </div>
+</div>
+

@@ -1,0 +1,207 @@
+<section class='animated slideInUp' id='section' *ngIf='isLoaded'>
+    <!--Grid row-->
+  <div class="row">
+      
+    <div class="col-lg-2 col-md-3 col-sm-12 col-xs-12" id='left'>
+        <div id='row'>
+            <!-- Section heading -->
+            <h4 class="h4-responsive gold-text">{{ui.author}}</h4>
+          
+                <!-- Grid column -->
+                <div class="mb-lg-0 mb-5 text-center" id='user'>
+                  <a routerLink="/user/{{user.login}}">
+                    <div class="avatar mx-auto">
+                        <img src="{{user.avatar}}" class="rounded-circle z-depth-1 img-fluid" >
+                    </div>
+                    <h5 class="mt-2 mb-1">{{user.login}}</h5>
+                    <p class="grey-text">{{user.name}}, {{user.location}}</p>
+                    <p class="text-uppercase blue-text" id='raiting'>
+                        <strong>★ {{user.raiting}}</strong>
+                    </p>
+                    </a>
+                </div>
+          </div>
+      <div id = 'agenda' class='fixed'>
+        <br/>
+        <h4 ng-bind-html="text | nl2br">{{ui.agenda}}</h4>
+        <hr/>
+            
+        <div class="list-group" id='sideAgenda'>
+          <div class='bottom-line'>
+              <a pageScroll href="#description" class="list-group-item waves-light" mdbWavesEffect>{{ui.description}}</a>
+          </div>
+          <div class='bottom-line' *ngIf='post.ingredients'>
+              <a pageScroll href="#ingredients" class="list-group-item waves-light" mdbWavesEffect>{{ui.ingredients}}</a>
+          </div>
+          <div class='bottom-line' *ngIf='post.videoLink'>
+              <a pageScroll href="#video" class="list-group-item waves-light" mdbWavesEffect>{{ui.video}}</a>
+           </div>
+          
+          <div *ngIf='steps[0].number'>
+            <div *ngFor='let step of steps' class='bottom-line'>
+              <a pageScroll  href="#{{step.number}}" class="list-group-item waves-light" mdbWavesEffect>{{step.title}}</a>
+            </div>
+          </div>
+          <a pageScroll href="#comments" class="list-group-item waves-light" mdbWavesEffect>{{ui.comments}}</a>  
+        </div>
+        <br/>
+      </div>
+    </div>
+        
+    <div class="col-lg-8 col-md-9 col-sm-12 col-xs-12" id='post'>
+      <mdb-card cascade="true" wider="true" reverse="true" >
+        <div class="view view-cascade overlay waves-light" mdbWavesEffect>
+          <mdb-card-img src="{{post.picture}}" alt="Wide sample post image"></mdb-card-img>
+          <a>
+            <div class="mask rgba-white-slight"></div>
+          </a>
+        </div>
+          
+        <!--Post data-->
+        <mdb-card-body cascade="true" class="text-center" id='title'>
+          <h4>{{post.title}}</h4>
+          <p>{{ui.writtenBy}} <a routerLink="/user/{{user.login}}">{{user.login}}</a>, {{post.date}}</p>
+          <a [routerLink]="['/category/',post.category]"><p class="blue-text">{{categoryLocal}}</p></a>
+          <div *ngIf="!(liked || !isLoggedIn || (currentUser == post.author) )">
+            <div class="stars" (click)='updateStars(1)'>★</div>
+            <div class="stars" (click)='updateStars(2)'>★</div>
+            <div class="stars" (click)='updateStars(3)'>★</div>
+            <div class="stars" (click)='updateStars(4)'>★</div>
+            <div class="stars" (click)='updateStars(5)'>★</div>
+          </div>
+          <p id='postRaiting'>★ {{post.raiting}}</p>               
+        </mdb-card-body>
+          
+        <!--Post data-->
+      </mdb-card>
+          
+      <!--Excerpt-->
+      <div class="excerpt mt-5">   
+        <h5 id='description'>{{ui.description}}</h5>
+        <hr/>
+        <p>{{post.fullDescription}}</p>
+
+        <div *ngIf='steps[0].number'>
+          <br/>
+          <h5>{{ui.agenda}}</h5>
+          <hr/>
+              
+          <div class="list-group">
+            <a pageScroll href="#ingredients" class="list-group-item waves-light" *ngIf='post.ingredients' mdbWavesEffect>{{ui.ingredients}}</a>
+            <a pageScroll href="#video" class="list-group-item waves-light" *ngIf='post.videoLink' mdbWavesEffect>{{ui.video}}</a>
+            <a pageScroll *ngFor='let step of steps'  href="#{{step.number}}" class="list-group-item waves-light" mdbWavesEffect>{{step.title}}</a>
+            <a pageScroll href="#comments" class="list-group-item waves-light" mdbWavesEffect>{{ui.comments}}</a>
+          </div>
+        </div>
+          <br/>
+          <div *ngIf='post.ingredients'>
+              <h5 id='ingredients'>{{ui.ingredients}}</h5>
+              <hr/>
+      
+              <p>{{post.ingredients}}</p>
+          </div>
+       
+          <br/>
+          <div *ngIf='post.videoLink'>
+              <h5 id='video'>{{ui.video}}</h5>
+              <hr/>
+      
+              <div class="embed-responsive embed-responsive-16by9">
+                <iframe class="embed-responsive-item" [src]="urlSafe" allowfullscreen></iframe>
+              </div>
+          </div>
+        
+        
+        
+                
+        <br/>
+        <h5 *ngIf='steps[0].number' id='ingredients'>{{ui.instruction}}</h5>
+        <hr/>      
+        <mat-vertical-stepper #stepper></mat-vertical-stepper>
+           
+        <div *ngFor='let step of steps' id='{{step.number}}' (click)="toggle($event)"> 
+          <mat-expansion-panel id='panel' *ngIf='steps[0].number'>
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                    <div ng-reflect-ng-switch="number" class="mat-step-icon" id='circle'>
+                        <span class="ng-star-inserted">{{step.number}}</span>
+                    </div>   
+                </mat-panel-title>
+                <mat-panel-description>
+                    <h5 id='step_{{step.number}}'>{{step.title}}</h5>
+                </mat-panel-description>
+              </mat-expansion-panel-header>  
+
+            </mat-expansion-panel>
+          
+            <div class="mat-vertical-content-container mat-stepper-vertical-line">
+                <div class="mat-vertical-stepper-content ">
+                  <div class="mat-vertical-content">
+                    <div class="ng-star-inserted">
+                    <p> {{step.text}}</p>
+                    <br/>
+                    <p class="text-center">
+                      <img id="step_img" class='img-fluid view view-cascade overlay' src="{{step.picture}}"></p>
+                      <br/>
+                      </div>
+                    </div>
+                  </div>
+            </div>
+          </div>
+
+              <div id='comments' (click)="toggle($event)"> 
+                  <mat-expansion-panel id='panel'>
+                      <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            <div ng-reflect-ng-switch="number" class="mat-step-icon" id='circle'>
+                                <span class="ng-star-inserted"><i class="fa fa-comment-o prefix white-text" aria-hidden="true"></i></span>
+                            </div>   
+                        </mat-panel-title>
+                        <mat-panel-description>
+                            <h5 id='step_3'>{{ui.comments}}</h5>
+                        </mat-panel-description>
+                      </mat-expansion-panel-header>
+                      
+                      
+                    
+        
+                    </mat-expansion-panel>
+                  
+                    <div id="comments_block" class="mat-vertical-content-container">
+                        <div class="mat-vertical-stepper-content ">
+                          <div class="mat-vertical-content">
+                            <div class="ng-star-inserted">
+
+                                <hr/>
+                                <p *ngIf='!isLoggedIn'>{{ui.singInForComments}}</p>
+                                <app-comments-group [(postId)]="postId" *ngIf='isLoggedIn'></app-comments-group>
+
+                      
+
+                              </div>
+                            </div>
+                          </div>
+                    </div>
+                  </div>
+          
+          
+      </div>
+    </div>
+        
+    <div class="col-lg-2 col-md-1 col-sm-12 col-xs-1" id='top-users'>
+        <app-top-users></app-top-users>
+    </div>
+        <!--Featured image-->
+
+        
+  </div>
+    <!--Grid row-->
+  
+  
+  </section>
+  <div class='text-center' id='spinner' *ngIf='!isLoaded'>
+          <p-progressSpinner fill="white"></p-progressSpinner>
+  </div>
+
+
+ 

@@ -1,0 +1,33 @@
+<!-- Section: Team v.1 -->
+<section class="team-section text-center my-5 animated slideInUp" id="user-list" [hidden]='!isLoaded'>
+
+  <!-- Section heading -->
+  <h4 class="my-5">{{ui.ourAmazingUsers}}</h4>
+
+  <!-- Grid row -->
+  <div class="row justify-content-center animated fadein">
+
+      <!-- Grid column -->
+      <div class="col-lg-1 col-md-2 mb-lg-3 mb-5" *ngFor="let userCard of userCards" id='user'>
+          <a routerLink="/user/{{userCard.login}}">
+          <div class="avatar mx-auto">
+              <img src="{{userCard.avatar}}" class="rounded-circle z-depth-1 img-fluid" alt="Sample avatar">
+          </div>
+          <h5 class=" mt-2 mb-1">{{userCard.login}}</h5>
+          <p class="grey-text">{{userCard.name}}</p>
+          <p class="text-uppercase blue-text">
+              <strong>★ {{userCard.raiting}}</strong>
+          </p>
+        </a>
+      </div>
+      <!-- Grid column -->
+      
+
+  </div>
+  <!-- Grid row -->
+
+</section>
+<div class='text-center' id='spinner' *ngIf='!isLoaded'>
+        <p-progressSpinner fill="white"></p-progressSpinner>
+</div>
+<!-- Section: Team v.1 -->

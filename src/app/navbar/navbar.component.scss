@@ -1,0 +1,63 @@
+h1 {
+    font-weight: bold;
+}
+img {
+    border-radius: 65px;
+	border: 6px solid white;
+}
+a {
+    color: white;
+    text-decoration: none;
+}
+a:hover {
+    color: #eee;
+}
+#logout {
+    color: white;
+}
+#logout:hover {
+    color: #eee;
+}
+nav {
+    width: 400px;
+}
+#signup-button {
+    background: none;
+    box-shadow: none;
+}
+/deep/ #forms a, #forms2 a{
+    font-size: 1rem !important;
+}
+/deep/ #forms strong, #forms2 strong{
+    font-size: 1rem !important;
+}
+#search {
+    margin-bottom: 0;
+    color: white;
+}
+#search input{
+    margin-bottom: 0;
+    color: white;
+}
+#search input::placeholder{
+    margin-bottom: 0;
+    color: white;
+    font-size: 1rem !important;
+}
+#search i{
+    cursor: pointer;
+}
+
+/deep/.container {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    max-width: 100% !important;
+}
+label {
+    color: white;
+    font-size: 16px;
+    padding-left: 3px;
+    padding-right: 3px;
+    margin-bottom: 8px;
+}
+

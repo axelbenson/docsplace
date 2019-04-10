@@ -1,0 +1,24 @@
+<div class="content row animated slideInUp" [hidden]='!isLoaded'>
+  <div class="col-lg-2 col-md-2 col-sm-2" id='top-users'>
+      <app-top-users></app-top-users>
+  </div>
+  <div class="col-lg-9 col-md-10 col-sm-12" id='posts'>
+      <app-recent-posts></app-recent-posts>
+      <app-top-posts></app-top-posts>
+       <div class="row justify-content-center">
+           <div class="col-md-12 col-lg-12">
+                <app-tag-cloud id='cloud'></app-tag-cloud>
+           </div>
+       </div>
+      
+  </div>
+  <div class='col-lg-1 col-md-1 ' id='medals'>
+      <app-medals></app-medals>
+  </div>
+</div>
+<div class='text-center' id='spinner' *ngIf='!isLoaded'>
+  <p-progressSpinner fill="white"></p-progressSpinner>
+</div>
+
+
+

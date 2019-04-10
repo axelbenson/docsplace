@@ -1,0 +1,167 @@
+#posts {
+    margin-bottom: 0px;
+    padding-bottom: 0px;
+}
+h4 {
+    text-transform: uppercase;
+}
+hr {
+    margin-top: 0px;
+}
+img {
+    max-width: 200px;
+}
+#user {
+    max-width: 250px;
+    cursor: pointer;
+}
+#user:hover h5{
+    color: #007bff;
+}
+#user:hover{
+    border-bottom: 2px solid #007bff;
+}
+#page {
+    margin: 0 auto;
+    margin-top: 80px;
+    padding-top: 40px;
+    max-width: 2000px;
+    padding-left: 0;
+    padding-right: 0;
+}
+.container{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-content: center;
+    flex-wrap: wrap;
+}
+#avatar {
+    padding: 20px;
+    padding-bottom: 20px;
+    padding-top: 0px;
+}
+#info1 {
+    text-align: right;
+    padding-top: 50px;
+    clear: both;
+    padding-right: 20px;
+    width: 350px;
+}
+p {
+    margin-bottom: 0px;
+}
+#info2 {
+    display: inline;
+    padding-top: 50px;
+    padding-left: 20px;
+    width: 350px;
+}
+@keyframes ui-progress-spinner-color {
+    100%,
+    0% {
+        stroke: #0057e7;
+    }
+    40% {
+        stroke: #0057e7;
+    }
+    66% {
+        stroke: #0057e7;
+    }
+    80%,
+    90% {
+        stroke: #0057e7;
+    }
+}
+#spinner {
+    padding-top: 50vh;
+}
+#frameModalTop {
+    margin-top: -80px;
+    
+}
+.modal-full-height {
+    min-height: 50% !important;
+}
+
+#bio img {
+    max-width: 100px;
+}
+.file-area {
+    position: relative;
+    background-color: #fff;
+    color: #495057;
+    border: #eee dashed 2px; ;
+  }
+  .file-area input[type=file] {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    opacity: 0;
+    cursor: pointer;
+  }
+  .file-area .file-dummy {
+    width: 100%;
+    padding: 30px;
+    background: rgba(255, 255, 255, 0.2);
+    border: 2px dashed rgba(255, 255, 255, 0.2);
+    text-align: center;
+    transition: background 0.3s ease-in-out;
+  }
+  .file-area:hover .file-dummy {
+    background: rgba(255, 255, 255, 0.1);
+  }
+  .file-area input[type=file]:focus + .file-dummy {
+    outline: 2px solid rgba(255, 255, 255, 0.5);
+    outline: -webkit-focus-ring-color auto 5px;
+  }
+  .bio {
+      display: inline-block;
+      height: 100px !important;
+  }
+  .avatar {
+      width: 30%;
+  }
+  .drop {
+      width: 70%;
+  }
+  #avatar {
+      min-width: 200px;
+  }
+  #avatar {
+      padding: 0;
+      border-radius: 200px;
+  }
+  #page {
+      padding-bottom: 20px;
+  }
+ @media (max-width: 400px) {
+    .modal-body {
+        width: 300px;
+    }
+ }
+#medals div{
+    display: inline-block;
+}
+#medals {
+    margin: 0 auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-content: center;
+    flex-wrap: wrap;
+}
+#medals /deep/.tooltip {
+    height: 65px !important;
+    margin-top: -93px !important;
+}
+/deep/ .tooltip-inner {
+    background-color: #007bff !important;
+}
+/deep/ .tooltip-arrow {
+    border-bottom: 7px solid #007bff !important;
+}

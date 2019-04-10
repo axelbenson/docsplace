@@ -1,0 +1,90 @@
+<!--Section: Blog v.2-->
+<section class="text-center" id='posts'>
+
+    <!--Section description-->
+    <!--Grid row-->
+    <div class="row justify-content-center">
+
+        <!--Grid column-->
+        <div class="col-lg-3 col-md-6 mb-4"  id='new'>
+               
+                <!--Featured image-->
+                <div class="view overlay rounded z-depth-2 mb-2 waves-light" mdbWavesEffect>
+                <a routerLink='/constructor'>
+                    <img src="https://res.cloudinary.com/howtoru/image/upload/img/plus3.png" class="img-fluid" > 
+                </a>
+                </div>
+                <!--Excerpt-->
+                <a routerLink='/constructor'>
+                <br/>
+                <h4 class="mb-2">{{ui.addNew}}</h4>
+            </a>
+            
+            </div>
+
+        <div class="col-lg-3 col-md-6 mb-4" *ngFor="let postCard of postCards" id='post'>
+            
+            <!--Featured image-->
+            <div class="view overlay rounded z-depth-2 mb-2 waves-light xoverlay x-simple" mdbWavesEffect>
+                <img src="{{postCard.picture}}" class="img-fluid x-img-main" >
+                <div class="xoverlay-box">
+                    <div class="xoverlay-data x-icon-left-right">
+                        <span class="x-white"><a routerLink="/editor/{{postCard.post_id}}"><i class="fa fa-pencil"></i></a></span>
+                      <span class="x-white"><a (click)="frame.show(); catch(postCard.post_id)"><i class="fa fa-trash"></i></a></span>
+                    </div>
+                </div>
+                
+            </div>
+            <a routerLink='/post/{{postCard.post_id}}'>
+            <!--Excerpt-->
+            <a href="" class="blue-text" [routerLink]="['/category/',postCard.category]">
+                <h6 class="mb-1 mt-3">
+                    <strong>{{getCategory(postCard.category)}}</strong>
+                </h6>
+            </a>
+            <h4 class="mb-2">
+                <a>{{postCard.title}}</a>
+            </h4>
+            <p>
+                <a class="font-weight-bold blue-text" routerLink="/user/{{postCard.author}}">{{postCard.author}}</a>, {{postCard.date}}</p>
+            <p class="grey-text">{{postCard.description}}</p>
+            <p>
+                <a class="font-weight-bold blue-text">★ {{postCard.raiting}}</a>
+            </p>
+        </a>
+        </div>
+        <!--Grid column-->
+
+      
+
+    </div>
+    <!--Grid row-->
+
+</section>
+<!--Section: Blog v.2-->
+<div mdbModal #frame="mdbModal" class="modal fade top" id="frameModalTop" [config]="{backdrop: false, ignoreBackdropClick: true}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-sm modal-notify modal-danger" role="document">
+    <!--Content-->
+    <div class="modal-content text-center">
+      <!--Header-->
+      <div class="modal-header d-flex justify-content-center">
+        <p class="heading">{{ui.areYouSure}}</p>
+      </div>
+
+      <!--Body-->
+      <div class="modal-body">
+        <i class="fa fa-times fa-4x animated rotateIn"></i>
+      </div>
+
+      <!--Footer-->
+      <div class="modal-footer flex-center">
+        <a (click)="deletePost(); frame.hide()" mdbBtn color="danger" outline="true" class="waves-effect"
+          mdbWavesEffect>{{ui.yes}}</a>
+        <a type="button" mdbBtn color="danger" class="waves-effect" mdbWavesEffect data-dismiss="modal" (click)="frame.hide()">{{ui.no}}</a>
+      </div>
+      <p-progressBar mode="indeterminate" [style]="{'height': '6px'}" *ngIf='wait'></p-progressBar>
+    </div>
+    <!--/.Content-->
+  </div>
+</div>

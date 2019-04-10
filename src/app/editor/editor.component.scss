@@ -1,0 +1,183 @@
+#posts {
+    margin-bottom: 0px;
+    padding-bottom: 0px;
+}
+h4 {
+    text-transform: uppercase;
+    
+}
+hr {
+    margin-top: 0px;
+}
+.row {
+    margin-left: 0px;
+    margin-right: 0px;
+}
+@keyframes ui-progress-spinner-color {
+    100%,
+    0% {
+        stroke: #0057e7;
+    }
+    40% {
+        stroke: #0057e7;
+    }
+    66% {
+        stroke: #0057e7;
+    }
+    80%,
+    90% {
+        stroke: #0057e7;
+    }
+}
+#spinner {
+    padding-top: 50vh;
+}
+section {
+    max-width: 800px;
+    margin: 0 auto;
+}
+p {
+    text-align: center;
+    margin-top: 120px;
+}
+
+
+option {
+    cursor: pointer;
+}
+#label {
+    padding-left: 38px;
+}
+#form-section:focus #label{
+    color: blue;
+}
+mat-form-field {
+    width: 100%;
+    padding-left: 40px;
+}
+#form-section::placeholder {
+    font-weight: 400;
+    font-size: 20px;
+    text-transform: uppercase;
+}
+#full_desc {
+    padding-left: 40px;
+}
+#full_desc label{
+    padding-left: 40px;
+}
+.file-area {
+    position: relative;
+    background-color: #fff;
+    color: #495057;
+    border: #eee dashed 2px; ;
+  }
+  .file-area input[type=file] {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    opacity: 0;
+    cursor: pointer;
+  }
+  .file-area .file-dummy {
+    width: 100%;
+    padding: 30px;
+    background: rgba(255, 255, 255, 0.2);
+    border: 2px dashed rgba(255, 255, 255, 0.2);
+    text-align: center;
+    transition: background 0.3s ease-in-out;
+  }
+  .file-area:hover .file-dummy {
+    background: rgba(255, 255, 255, 0.1);
+  }
+  .file-area input[type=file]:focus + .file-dummy {
+    outline: 2px solid rgba(255, 255, 255, 0.5);
+    outline: -webkit-focus-ring-color auto 5px;
+  }
+  /deep/ .mat-step-icon, /deep/ .mat-step-icon-not-touched {
+    width: 100px !important;
+    height: 100px !important;
+    z-index: 1500 !important;; 
+}
+/deep/ .mat-vertical-stepper-header {
+    height: 100px !important; 
+    padding-top: 0 !important;
+    padding-left: 0 !important;
+    max-height: 200px !important;
+}
+/deep/ .mat-vertical-content-container {
+    margin-left: 49px !important; 
+}
+/deep/ .mat-step-header .mat-step-icon-not-touched {
+    background-color: grey !important;
+}
+#step_img {
+    margin: 0 auto !important;
+}
+/deep/ .mat-step-header .mat-step-icon {
+    background-color: #007bff !important;
+}
+#next {
+    font-weight: 300;
+    text-transform: uppercase;
+    width: 100%;
+}
+#circle {
+    background-color: #007bff !important;
+    color: #fff;
+    border-radius: 50%;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    flex-shrink: 0;
+    width: 100px !important;
+    height: 100px !important;
+    z-index: 1500 !important;
+    cursor: pointer;
+    font-size: 20px !important;
+}
+mat-expansion-panel {
+    height: 120px;   
+    box-shadow: none !important; 
+}
+mat-expansion-panel-header {
+    height: 120px !important;
+    padding-left: 0 !important;
+}
+mat-panel-title {
+    width: 120px !important;
+    max-width: 120px !important;
+}
+mat-panel-description {
+    color: grey !important;
+    padding-top: 35px;
+}
+/deep/ .mat-expansion-panel-body {
+    margin-bottom: 50px !important;
+}
+.md-form#stepp {
+    margin-top: 0 !important;
+    width: 100% !important;
+}
+button {
+    margin: 0 auto !important;
+    width: 100%;
+}
+#form-step-name:focus {
+    #panel {
+        background-color: #eee;
+    }
+
+}
+#info {
+    margin-top: 20px;
+}
+/deep/ #step-img {
+    width: 100% !important;
+    height: auto;
+    min-width: 200px;
+}
