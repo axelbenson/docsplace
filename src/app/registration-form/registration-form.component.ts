@@ -6,6 +6,11 @@ import { Response } from '../response';
 import { LocalizationService } from '../localization.service';
 import { Localization } from '../localization';
 
+export interface Section {
+  value: string;
+  label: any;
+}
+
 @Component({
   selector: 'app-registration-form',
   templateUrl: './registration-form.component.html',
@@ -13,6 +18,7 @@ import { Localization } from '../localization';
   providers: [MessageService]
 })
 export class RegistrationFormComponent implements OnInit {
+  sections: Section[];
   ui: Localization;
   login = new FormControl(null, [Validators.required, Validators.pattern('[A-Za-z0-9]*')]);
   email = new FormControl('', [Validators.required, Validators.email] );
@@ -38,6 +44,17 @@ export class RegistrationFormComponent implements OnInit {
     this.ui = this.localizationService.ui;
     document.getElementById('form-login').focus();
     this.wait = false;
+
+    setTimeout(()=> {
+      this.sections = [
+        {value:'IT', label: this.ui.it},
+        {value:'HR',label: this.ui.hr},
+        {value:'Tech',label: this.ui.tech},
+        {value:'Finance',label: this.ui.finance},
+        {value:'Legal',label: this.ui.legal},
+        {value: 'Other',label: this.ui.other}
+      ];
+    }, 1000);
   }
 
   onFileUpload(event): void {

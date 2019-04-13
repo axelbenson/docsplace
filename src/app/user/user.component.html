@@ -20,7 +20,7 @@
         </div>
         <div id='info2'>
             <h5><text class="grey-text">{{ui.name}}: </text>{{userCard.name}}</h5>
-            <h5><text class="grey-text">{{ui.department}}: </text>{{userCard.department}}</h5>
+            <h5><text class="grey-text">{{ui.department}}: </text>{{departmentLocal}}</h5>
             <h5><text class="grey-text">{{ui.experience}}: </text>{{userCard.experience}}</h5>
         </div>
 
@@ -92,9 +92,14 @@
                 <label for="form-name">{{ui.yourName}}</label>
         </div>
         <div class="md-form">
-                <i class="fa fa-map-marker prefix grey-text"></i>
-                <input type="text" [formControl]="department" id="form-department" value="{{userCard.department}}" class="form-control" mdbInputDirective>
-                <label for="form-name">{{ui.yourDepartment}}</label>
+            <i class="fa fa-location-arrow prefix grey-text"></i>
+            <mat-form-field>
+                <mat-select placeholder="{{ui.yourDepartment}}" id='form-department' [formControl]="department">                        
+                    <mat-option *ngFor="let section of sections" [value]="section.value">
+                        {{section.label}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
         </div>
         <div class="md-form">
                 <i class="fa fa-calendar prefix grey-text"></i>

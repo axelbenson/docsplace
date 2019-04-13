@@ -40,6 +40,7 @@ urlSafe: SafeResourceUrl;
   isLoggedIn: boolean;
   formData: FormData = new FormData();
   categoryLocal: string;
+  departmentLocal: string;
 
   ngOnInit() {
     this.localizationService.subject.subscribe( ui => {
@@ -86,7 +87,7 @@ urlSafe: SafeResourceUrl;
     this.httpService.getUser(author)
       .subscribe(user => {
         this.user = user;
-       
+        this.departmentLocal = this.localizationService.getCategory(this.user.department);
       });
   }
 
