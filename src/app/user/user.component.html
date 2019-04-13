@@ -20,8 +20,8 @@
         </div>
         <div id='info2'>
             <h5><text class="grey-text">{{ui.name}}: </text>{{userCard.name}}</h5>
-            <h5><text class="grey-text">{{ui.location}}: </text>{{userCard.location}}</h5>
-            <h5><text class="grey-text">{{ui.age}}: </text>{{userCard.age}}</h5>
+            <h5><text class="grey-text">{{ui.department}}: </text>{{userCard.department}}</h5>
+            <h5><text class="grey-text">{{ui.experience}}: </text>{{userCard.experience}}</h5>
         </div>
 
     <!-- Grid column -->
@@ -93,13 +93,13 @@
         </div>
         <div class="md-form">
                 <i class="fa fa-map-marker prefix grey-text"></i>
-                <input type="text" [formControl]="location" id="form-location" value="{{userCard.location}}" class="form-control" mdbInputDirective>
-                <label for="form-name">{{ui.yourLocation}}</label>
+                <input type="text" [formControl]="department" id="form-department" value="{{userCard.department}}" class="form-control" mdbInputDirective>
+                <label for="form-name">{{ui.yourDepartment}}</label>
         </div>
         <div class="md-form">
                 <i class="fa fa-calendar prefix grey-text"></i>
-                <input type="text" [formControl]="age" id="form-age" value="{{userCard.age}}" class="form-control" mdbInputDirective>
-                <label for="form-name">{{ui.yourAge}}</label>
+                <input type="text" [formControl]="experience" id="form-experience" value="{{userCard.experience}}" class="form-control" mdbInputDirective>
+                <label for="form-name">{{ui.yourExperience}}</label>
         </div>
 
       </div>

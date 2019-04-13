@@ -1,6 +1,6 @@
 <?php
 	require_once("dbconnect.php");
-	$result = $mysqli->query("SELECT id, login, name, avatar, location, raiting, age, email, block_status, su FROM users ORDER BY raiting DESC");
+	$result = $mysqli->query("SELECT id, login, name, avatar, department, raiting, experience, email, block_status, su FROM users ORDER BY raiting DESC");
 	$users = [];
 	$rows = $result->num_rows;
 	for ($i = 0 ; $i < $rows ; ++$i)
@@ -11,9 +11,9 @@
 			"login" => $user[1],
 			"name" => $user[2],
 			"avatar" => $user[3],
-			"location" => $user[4],
+			"department" => $user[4],
 			"raiting" => $user[5],
-			"age" => $user[6],
+			"experience" => $user[6],
 			"email" => $user[7],
 			"blocked" => $user[8],
 			"su" => $user[9]

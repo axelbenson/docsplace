@@ -18,8 +18,8 @@ $allowed = array('png', 'jpg', 'gif', 'jpeg');
 
 if (isset($_POST['id'])) {
 	if (isset($_POST['name'])) {
-		if (isset($_POST['age'])) {
-			if (isset($_POST['location'])) {
+		if (isset($_POST['experience'])) {
+			if (isset($_POST['department'])) {
 
 				if ($_FILES['file']['name']) {
 
@@ -64,9 +64,9 @@ if (isset($_POST['id'])) {
 					                array("folder" => $uploaddir, "public_id" => $login."_".$mask));
 					 }
 
-					  $result = $mysqli->query("UPDATE `users` SET `name`='".$_POST['name']."', `age`='".$age."', `location`='".$location."', `avatar`='https://res.cloudinary.com/howtoru/image/upload/img/users/".$uploadfile."' WHERE id='".$_POST['id']."'");
+					  $result = $mysqli->query("UPDATE `users` SET `name`='".$_POST['name']."', `experience`='".$experience."', `department`='".$department."', `avatar`='https://res.cloudinary.com/howtoru/image/upload/img/users/".$uploadfile."' WHERE id='".$_POST['id']."'");
 				} else {
-					$result = $mysqli->query("UPDATE `users` SET `name`='".$_POST['name']."', `age`='".$_POST['age']."', `location`='".$_POST['location']."' WHERE id='".$_POST['id']."'");
+					$result = $mysqli->query("UPDATE `users` SET `name`='".$_POST['name']."', `experience`='".$_POST['experience']."', `department`='".$_POST['department']."' WHERE id='".$_POST['id']."'");
 				}
 
 				if (!$result) {
