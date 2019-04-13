@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, PipeTransform, Pipe } from '@angular/core';
 import {PageScrollConfig} from 'ng2-page-scroll';
 import {MatStepper} from '@angular/material';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -9,6 +9,14 @@ import { Step } from '../step';
 import { LocalizationService } from '../localization.service';
 import { Localization } from '../localization';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+
+@Pipe({ name: 'safe' })
+export class SafePipe implements PipeTransform {
+  constructor(private sanitizer: DomSanitizer) {}
+  transform(url) {
+    return this.sanitizer.bypassSecurityTrustResourceUrl(url);
+  }
+}
 
 @Component({
   selector: 'app-post',
@@ -98,6 +106,10 @@ urlSafe: SafeResourceUrl;
        
         this.isLoaded = true;
       });
+  }
+
+  getSafeUrl(link: string): SafeResourceUrl {
+    return this.sanitizer.bypassSecurityTrustResourceUrl(link);
   }
 
   toggle(event): void {

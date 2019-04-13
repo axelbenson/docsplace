@@ -61,10 +61,16 @@ if ($_POST['name']!='') {
 
 				    \Cloudinary\Uploader::upload($_FILES['file0']['tmp_name'], 
 				    array("folder" => $uploaddir, "public_id" => $_POST['author']."_".str_replace(" ", "_", $_POST['name'])));
-				 }
+				}
+
+				if ($_POST['instruction'] != '') {
+					$instruction = $_POST['instruction'];
+				} else {
+					$instruction = '';
+				}
 
 				if ($_POST['videoLink']=='') {
-					$result = $mysqli->query("INSERT INTO `instructions` (`name`, `author`, `category`, `hashtags`, `short_description`, `picture`, `full_description`, `date`, `ingredients`, `num_steps`) VALUES ('".trim($_POST['name'])."', '".trim($_POST['author'])."', '".$_POST['section']."', '".$_POST['tags']."', '".$_POST['short']."','".$uploadfile."','".$_POST['full']."','".$date."','".$_POST['needed']."', '".$_POST['numSteps']."')");
+					$result = $mysqli->query("INSERT INTO `instructions` (`name`, `author`, `category`, `hashtags`, `short_description`, `picture`, `full_description`, `instruction`, `date`, `num_steps`) VALUES ('".trim($_POST['name'])."', '".trim($_POST['author'])."', '".$_POST['section']."', '".$_POST['tags']."', '".$_POST['short']."','".$uploadfile."','".$_POST['full']."','".$instruction."','".$date."', '".$_POST['numSteps']."')");
 				} else {
 					$link = str_replace("https://www.youtube.com/watch?v=", "https://www.youtube.com/embed/", $_POST['videoLink']);
 					if ($link == $_POST['videoLink']) {
@@ -73,7 +79,7 @@ if ($_POST['name']!='') {
 					if (strpos($link, "embed") == false) {
 						$link = '';
 					}
-					$result = $mysqli->query("INSERT INTO `instructions` (`name`, `author`, `category`, `hashtags`, `short_description`, `picture`, `full_description`, `date`, `ingredients`, `num_steps`, `video_link`) VALUES ('".trim($_POST['name'])."', '".trim($_POST['author'])."', '".$_POST['section']."', '".$_POST['tags']."', '".$_POST['short']."','".$uploadfile."','".$_POST['full']."','".$date."','".$_POST['needed']."', '".$_POST['numSteps']."', '".$link."')");
+					$result = $mysqli->query("INSERT INTO `instructions` (`name`, `author`, `category`, `hashtags`, `short_description`, `picture`, `full_description`, `instruction`, `date`, `num_steps`, `video_link`) VALUES ('".trim($_POST['name'])."', '".trim($_POST['author'])."', '".$_POST['section']."', '".$_POST['tags']."', '".$_POST['short']."','".$uploadfile."','".$_POST['full']."','".$instruction."','".$date."', '".$_POST['numSteps']."', '".$link."')");
 				}
 
 				if (!$result) {
@@ -100,16 +106,32 @@ if ($_POST['name']!='') {
 
 							if(in_array(strtolower($ext), $allowed)) 
 							{
+								$uploaddir = 'docsplace/pictures/';
 								\Cloudinary\Uploader::upload($_FILES['file'.$a]['tmp_name'], 
 						    	array("folder" => $uploaddir, "public_id" => $_POST['author']."_".str_replace(" ", "_", $_POST['name'])."_".$a));
 						    	$pic = "https://res.cloudinary.com/howtoru/image/upload/docsplace/pictures/".$_POST['author']."_".str_replace(" ", "_", $_POST['name'])."_".$a;
 							}
-							file_put_contents('post_id.txt', $post_id." ".$pic);
 							$stepName = $_POST['stepName'.$a];
 							$stepDesc = $_POST['stepDesc'.$a];
+							$stepVideoLink = $_POST['stepVideoLink'.$a];
+							$link = '';
+
+							if ($stepVideoLink != '') {
+								$link = str_replace("https://www.youtube.com/watch?v=", "https://www.youtube.com/embed/", $stepVideoLink);
+								if ($link == $stepVideoLink) {
+									$link = str_replace("https://youtu.be/", "https://www.youtube.com/embed/", $stepVideoLink);
+								}
+								if (strpos($link, "embed") == false) {
+									$link = '';
+								}
+							} 
 							
-							if ($stepName && $stepDesc) {
-								$result = $mysqli->query("INSERT INTO `steps` (`post_id`, `number`, `title`, `text`, `picture`) VALUES ('".$post_id."', '".$a."', '".$stepName."', '".$stepDesc."', '".$pic."')");
+							if ($stepName && ($stepDesc || $pic || ($link != ''))) {
+								if ($link != '') {
+									$result = $mysqli->query("INSERT INTO `steps` (`post_id`, `number`, `title`, `text`, `picture`, `video_link`) VALUES ('".$post_id."', '".$a."', '".$stepName."', '".$stepDesc."', '".$pic."', '".$link."')");
+								} else {
+									$result = $mysqli->query("INSERT INTO `steps` (`post_id`, `number`, `title`, `text`, `picture`) VALUES ('".$post_id."', '".$a."', '".$stepName."', '".$stepDesc."', '".$pic."')");
+								}
 
 								if (!$result) {
 									$response['error'] = "Ошибка при добавлении шага ".$a." в БД!";

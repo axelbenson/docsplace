@@ -27,7 +27,13 @@ if (isset($_POST['name'])) {
 					}
 					if (strpos($link, "embed") == false) {
 						$link = '';
-					}
+				}
+
+				if ($_POST['instruction'] != '') {
+					$instruction = $_POST['instruction'];
+				} else {
+					$instruction = '';
+				}
 
 				if ($_FILES['file0']['name']) {
 
@@ -74,9 +80,9 @@ if (isset($_POST['name'])) {
 					    array("folder" => $uploaddir, "public_id" => $_POST['author']."_".str_replace(" ", "_", $_POST['name'])."_".$mask));
 					 }
 
-					 $result = $mysqli->query("UPDATE instructions SET `name`='".trim($_POST['name'])."', `category`='".$_POST['section']."', `short_description`='".trim($_POST['short'])."', `full_description`='".(trim($_POST['full']))."', `ingredients`='".($_POST['needed'])."', `picture`='".$uploadfile."', `video_link`='".$link."' WHERE id='".$_POST['postId']."'");
+					$result = $mysqli->query("UPDATE instructions SET `name`='".trim($_POST['name'])."', `category`='".$_POST['section']."', `short_description`='".trim($_POST['short'])."', `full_description`='".(trim($_POST['full']))."', `picture`='".$uploadfile."', `video_link`='".$link."', `instruction`='".$instruction."' WHERE id='".$_POST['postId']."'");
 				} else {
-					$result = $mysqli->query("UPDATE instructions SET `name`='".trim($_POST['name'])."', `category`='".$_POST['section']."', `short_description`='".trim($_POST['short'])."', `full_description`='".(trim($_POST['full']))."', `ingredients`='".($_POST['needed'])."', `video_link`='".$link."' WHERE id='".$_POST['postId']."'");
+					$result = $mysqli->query("UPDATE instructions SET `name`='".trim($_POST['name'])."', `category`='".$_POST['section']."', `short_description`='".trim($_POST['short'])."', `full_description`='".(trim($_POST['full']))."', `video_link`='".$link."', `instruction`='".$instruction."' WHERE id='".$_POST['postId']."'");
 				}
 
 
@@ -92,9 +98,21 @@ if (isset($_POST['name'])) {
 						{
 							$stepName = $_POST['stepName'.$a];
 							$stepDesc = $_POST['stepDesc'.$a];
+							$stepVideoLink = $_POST['stepVideoLink'.$a];
+							$link = '';
 
 							$ext = pathinfo($_FILES['file'.$a]['name'], PATHINFO_EXTENSION);
 							$pic = '';
+
+							if ($stepVideoLink != '') {
+								$link = str_replace("https://www.youtube.com/watch?v=", "https://www.youtube.com/embed/", $stepVideoLink);
+								if ($link == $stepVideoLink) {
+									$link = str_replace("https://youtu.be/", "https://www.youtube.com/embed/", $stepVideoLink);
+								}
+								if (strpos($link, "embed") == false) {
+									$link = '';
+								}
+							}
 
 							if(in_array(strtolower($ext), $allowed)) 
 							{
@@ -102,12 +120,20 @@ if (isset($_POST['name'])) {
 								$uploaddir = 'docsplace/pictures/';
 								\Cloudinary\Uploader::upload($_FILES['file'.$a]['tmp_name'], 
 						    	array("folder" => $uploaddir, "public_id" => $_POST['author']."_".str_replace(" ", "_", $_POST['name'])."_".$a."_".$mask));
-						    	$pic = "https://res.cloudinary.com/howtoru/image/upload/img/pictures/".$_POST['author']."_".str_replace(" ", "_", $_POST['name'])."_".$a."_".$mask;
+						    	$pic = "https://res.cloudinary.com/howtoru/image/upload/docsplace/pictures/".$_POST['author']."_".str_replace(" ", "_", $_POST['name'])."_".$a."_".$mask;
 						    	
-								$result = $mysqli->query("UPDATE `steps` SET `title`='".$stepName."', `text`='".($stepDesc)."', `picture`='".$pic."' WHERE id='".$_POST['stepId'.$a]."'");
+								if ($link == '') {
+									$result = $mysqli->query("UPDATE `steps` SET `title`='".$stepName."', `text`='".($stepDesc)."', `picture`='".$pic."' WHERE id='".$_POST['stepId'.$a]."'");
+								} else {
+									$result = $mysqli->query("UPDATE `steps` SET `title`='".$stepName."', `text`='".($stepDesc)."', `picture`='".$pic."', `video_link`='".$link."' WHERE id='".$_POST['stepId'.$a]."'");
+								}
 							} else {
 
-								$result = $mysqli->query("UPDATE `steps` SET `title`='".$stepName."', `text`='".($stepDesc)."' WHERE id='".$_POST['stepId'.$a]."'");
+								if ($link == '') {
+									$result = $mysqli->query("UPDATE `steps` SET `title`='".$stepName."', `text`='".($stepDesc)."' WHERE id='".$_POST['stepId'.$a]."'");
+								} else {
+									$result = $mysqli->query("UPDATE `steps` SET `title`='".$stepName."', `text`='".($stepDesc)."', `video_link`='".$link."' WHERE id='".$_POST['stepId'.$a]."'");
+								}
 
 							}
 							

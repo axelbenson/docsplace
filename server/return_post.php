@@ -1,6 +1,6 @@
 <?php
 	require_once("dbconnect.php");
-	$result = $mysqli->query("SELECT id, category, name, author, picture, short_description, raiting, `date`, `full_description`, `ingredients`, `num_steps`, `video_link` FROM instructions WHERE id='".$_GET['id']."' LIMIT 1");
+	$result = $mysqli->query("SELECT id, category, name, author, picture, short_description, raiting, `date`, `full_description`, `num_steps`, `video_link`, `instruction` FROM instructions WHERE id='".$_GET['id']."' LIMIT 1");
 	$rows = $result->num_rows;
 	$instruction = $result->fetch_row();
 	$post = [
@@ -13,9 +13,9 @@
 			"raiting" => $instruction[6],
 			"date" => $instruction[7],
 			"fullDescription" => $instruction[8],
-			"ingredients" => $instruction[9],
-			"numSteps" => $instruction[10],
-			"videoLink" => $instruction[11]
+			"numSteps" => $instruction[9],
+			"videoLink" => $instruction[10],
+			"instruction" => $instruction[11]
 	];
 
 	header('Content-type: application/json');

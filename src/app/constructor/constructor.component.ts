@@ -8,6 +8,9 @@ import {ENTER} from '@angular/cdk/keycodes';
 import { Router } from '@angular/router';
 import { LocalizationService } from '../localization.service';
 import { Localization } from '../localization';
+import '@ckeditor/ckeditor5-build-classic/build/translations/ru';
+import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import { ChangeEvent } from '@ckeditor/ckeditor5-angular/ckeditor.component';
 
 export interface Section {
   value: string;
@@ -25,6 +28,15 @@ export interface Tag {
   providers: [MessageService]
 })
 export class ConstructorComponent implements OnInit {
+  public Editor = ClassicEditor;
+  public onChange( { editor }: ChangeEvent ) {
+    this.markdown.setValue(editor.getData());
+  }
+  public config = {
+    language: localStorage.getItem('language') || 'en',
+    placeholder: '...'
+  };
+
   ui: Localization;
   sections: Section[];
   
@@ -47,7 +59,7 @@ export class ConstructorComponent implements OnInit {
   section = new FormControl('', Validators.required );
   short = new FormControl('', [Validators.required, Validators.maxLength(150)] );
   full = new FormControl('', Validators.required );
-  needed = new FormControl('');
+  markdown = new FormControl('');
   videoLink = new FormControl('');
 
   ngOnInit() {
@@ -58,7 +70,6 @@ export class ConstructorComponent implements OnInit {
       this.ui = ui;
     });
     this.ui = this.localizationService.ui;
-    
 
     setTimeout(()=> {
       this.step = document.getElementById('step').cloneNode(true);
@@ -168,32 +179,44 @@ export class ConstructorComponent implements OnInit {
     this.formData.append('section', this.section.value);
     this.formData.append('short', this.short.value);
     this.formData.append('full', this.full.value);
-    this.formData.append('needed', this.needed.value);
     this.formData.append('tags', this.tags.toString());
-    this.formData.append('numSteps', ''+this.counter);
     this.formData.append('author', localStorage.getItem('currentUser'));
     this.formData.append('videoLink', this.videoLink.value);
-  
-    for (let a = 0; a < this.counter; a++)
-    {
-      let node = <HTMLInputElement>(document.getElementById('form10'))
-      if (node) { 
-        this.formData.append('stepDesc'+(a+1), node.value); 
-        document.getElementById('form10').setAttribute('id','form1');
-      }
-    }
 
-    for (let a = 0; a < this.counter; a++)
-    {
-      let node = <HTMLInputElement>(document.getElementById('form-step-name'))
-      if (node){
-        this.formData.append('stepName'+(a+1), node.value);
-        document.getElementById('form-step-name').setAttribute('id','form1');
+    if (this.markdown.value !== '') {
+      this.formData.append('instruction', this.markdown.value);
+    }
+  
+    if ((<HTMLInputElement>(document.getElementById('form-step-name'))).value) {
+      this.formData.append('numSteps', ''+this.counter);
+
+      for (let a = 0; a < this.counter; a++) {
+        let node = <HTMLInputElement>(document.getElementById('form10'))
+        if (node) { 
+          this.formData.append('stepDesc'+(a+1), node.value); 
+          document.getElementById('form10').setAttribute('id','form1');
+        }
       }
-      
+  
+      for (let a = 0; a < this.counter; a++) {
+        let node = <HTMLInputElement>(document.getElementById('form-step-name'))
+        if (node){
+          this.formData.append('stepName'+(a+1), node.value);
+          document.getElementById('form-step-name').setAttribute('id','form1');
+        }
+      }
+  
+      for (let a = 0; a < this.counter; a++) {
+        let node = <HTMLInputElement>(document.getElementById('form-step-videoLink'))
+        if (node){
+          this.formData.append('stepVideoLink'+(a+1), node.value);
+          document.getElementById('form-step-videoLink').setAttribute('id','form1');
+        }
+      }
+    } else {
+      this.formData.append('numSteps', '0');
     }
     
-  
     this.httpService.uploadPost(this.formData).subscribe((data: Response)=> {
         if (data.error == "") {
           this.messageService.add({severity:'success', summary:'Succes', detail:data.success});
@@ -201,10 +224,9 @@ export class ConstructorComponent implements OnInit {
         } else {
           this.messageService.add({severity:'error', summary:'Error', detail:data.error});
         }
-        if (data) {this.wait = false;}
-        
-      });
-     
-   
+        if (data) {
+          this.wait = false;
+        }
+    });
   }
 }

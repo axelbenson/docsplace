@@ -53,11 +53,14 @@ import { MedalsComponent } from './medals/medals.component';
 import { FooterComponent } from './footer/footer.component';
 import {InputSwitchModule} from 'primeng/inputswitch';
 import { FormsModule } from '@angular/forms';
+import { SafePipe } from './post/post.component';
+import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 
 
 @NgModule({
   declarations: [
     AppComponent,
+    SafePipe,
     AuthorizationFormComponent,
     RegistrationFormComponent,
     RecentPostsComponent,
@@ -83,6 +86,7 @@ import { FormsModule } from '@angular/forms';
     FooterComponent
   ],
   imports: [
+    CKEditorModule,
     BrowserModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,

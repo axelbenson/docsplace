@@ -7,8 +7,8 @@ export class PostCard {
     description: string;
     raiting: number;
     date: string;
-    ingredients: string;
     fullDescription: string;
     numSteps: number;
     videoLink: string;
+    instruction: string;
   }
