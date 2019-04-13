@@ -59,8 +59,8 @@ export class UserComponent implements OnInit {
   }
   formData: FormData = new FormData();
   name = new FormControl('');
-  age = new FormControl('');
-  location = new FormControl('');
+  experience = new FormControl('');
+  department = new FormControl('');
 
   ngOnInit() { 
     this.localizationService.subject.subscribe( ui => {
@@ -121,15 +121,15 @@ export class UserComponent implements OnInit {
     } else {
       this.formData.append('name', this.name.value);
     }
-    if (!this.age.value){
-      this.formData.append('age', ''+this.userCard.age);
+    if (!this.experience.value){
+      this.formData.append('experience', ''+this.userCard.experience);
     } else {
-      this.formData.append('age', this.age.value);
+      this.formData.append('experience', this.experience.value);
     }
-    if (!this.location.value){
-      this.formData.append('location', this.userCard.location);
+    if (!this.department.value){
+      this.formData.append('department', this.userCard.department);
     } else {
-      this.formData.append('location', this.location.value);
+      this.formData.append('department', this.department.value);
     }
     this.httpService.editUser(this.formData).subscribe((data: Response)=> {
         if (data.error == "") {

@@ -22,7 +22,7 @@ export class AdminComponent implements OnInit {
   wait: boolean;
   formData: FormData = new FormData();
 
-  displayedColumns: string[] = ['select', 'id', 'raiting', 'login', 'email', 'location', 'blocked', 'su'];
+  displayedColumns: string[] = ['select', 'id', 'raiting', 'login', 'email', 'department', 'blocked', 'su'];
   dataSource: MatTableDataSource<UserCard>;
   selection = new SelectionModel<UserCard>(true, []);
 

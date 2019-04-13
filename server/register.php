@@ -14,8 +14,8 @@ $response = [
         "error" => ""
     ];
 	require_once('dbconnect.php');
-        $age = trim($_POST["age"]);
-        $location = trim($_POST["location"]);   
+        $experience = trim($_POST["experience"]);
+        $department = trim($_POST["department"]);   
             
             if(isset($_POST["name"])){
 
@@ -196,7 +196,7 @@ $response = [
 
             
 
-            $result_query_insert = $mysqli->query("INSERT INTO `users` (login, name, email, password, age, location, avatar) VALUES ('".$login."', '".$name."', '".$email."', '".$password."', '".$age."','".$location."','https://res.cloudinary.com/howtoru/image/upload/img/users/".$uploadfile."')");
+            $result_query_insert = $mysqli->query("INSERT INTO `users` (login, name, email, password, experience, department, avatar) VALUES ('".$login."', '".$name."', '".$email."', '".$password."', '".$experience."','".$department."','https://res.cloudinary.com/howtoru/image/upload/img/users/".$uploadfile."')");
 
 
             if(!$result_query_insert){

@@ -17,8 +17,8 @@ export class RegistrationFormComponent implements OnInit {
   login = new FormControl(null, [Validators.required, Validators.pattern('[A-Za-z0-9]*')]);
   email = new FormControl('', [Validators.required, Validators.email] );
   name = new FormControl('', [Validators.required, Validators.pattern('[A-Za-zА-Яа-я \']*')] );
-  age = new FormControl('', [Validators.required, Validators.pattern('[0-9]*')] );
-  location = new FormControl('', [Validators.required, Validators.pattern('[A-Za-zА-Яа-я, ]*')] );
+  experience = new FormControl('', [Validators.required, Validators.pattern('[0-9]*')] );
+  department = new FormControl('', [Validators.required, Validators.pattern('[A-Za-zА-Яа-я, ]*')] );
   confirmPassword = new FormControl('', [Validators.required, Validators.minLength(6)] );
   password = new FormControl('', [Validators.required, Validators.minLength(6)] );
   formData: FormData = new FormData();
@@ -58,8 +58,8 @@ export class RegistrationFormComponent implements OnInit {
       this.formData.append('login', this.login.value);
       this.formData.append('email', this.email.value);
       this.formData.append('name', this.name.value);
-      this.formData.append('location', this.location.value);
-      this.formData.append('age', this.age.value);
+      this.formData.append('department', this.department.value);
+      this.formData.append('experience', this.experience.value);
       this.formData.append('password', this.password.value);
       this.formData.append('confirm_password', this.confirmPassword.value);
       this.httpService.register(this.formData).subscribe((data: Response)=> {

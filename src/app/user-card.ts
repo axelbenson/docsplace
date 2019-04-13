@@ -3,9 +3,9 @@ export class UserCard {
     login: string;
     name: string;
     avatar: string;
-    location: string;
+    department: string;
     raiting: number;
-    age: number;
+    experience: number;
     email: string;
     blocked: number;
     su: number;

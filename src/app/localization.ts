@@ -9,7 +9,7 @@ export class Localization {
 	"login": string;
 	"id": string;
 	"email": string;
-	"location": string;
+	"department": string;
 	"blocked": string;
 	"signIn": string;
 	"yourLogin": string;
@@ -72,8 +72,8 @@ export class Localization {
 	"recentPosts": string;
 	"yourEmail": string;
 	"yourName": string;
-	"yourAge": string;
-	"yourLocation": string;
+	"yourExperience": string;
+	"yourDepartment": string;
 	"confirmPassword": string;
 	"chooseYourAvatar": string;
 	"greetingsLine1": string;
