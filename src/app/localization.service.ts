@@ -22,24 +22,16 @@ export class LocalizationService {
 
   getCategory(category) {
     switch (category) {
-      case ('Hobbies'):
-        return this.ui.hobbies;
-      case ('Apartment'):
-        return this.ui.apartment;
-      case ('Sport'):
-        return this.ui.sport;
-      case ('Internet'):
-        return this.ui.internet;
-      case ('Auto'):
-        return this.ui.auto;
-      case ('Health'):
-        return this.ui.health;
-      case ('Food'):
-        return this.ui.food;
-      case ('Fashion'):
-        return this.ui.fashion;
-      case ('Engineering'):
-        return this.ui.engineering;
+      case ('IT'):
+        return this.ui.it;
+      case ('HR'):
+        return this.ui.hr;
+      case ('Tech'):
+        return this.ui.tech;
+      case ('Finance'):
+        return this.ui.finance;
+      case ('Legal'):
+        return this.ui.legal;
       case ('Other'):
         return this.ui.other;
     }

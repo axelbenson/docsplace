@@ -12,6 +12,7 @@ import { Localization } from '../localization';
 export class TopUsersComponent implements OnInit {
   ui: Localization;
   userCards: UserCard[];
+
   constructor(private httpService: HttpService,
     private localizationService: LocalizationService) { }
 
@@ -26,5 +27,9 @@ export class TopUsersComponent implements OnInit {
   getUserCards(): void {
     this.httpService.getTopUserCards()
     .subscribe(data => this.userCards = data);
+  }
+
+  getDepartment(department: string): string {
+    return this.localizationService.getCategory(department);
   }
 }

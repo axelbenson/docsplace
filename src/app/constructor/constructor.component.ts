@@ -68,15 +68,11 @@ export class ConstructorComponent implements OnInit {
       clone.addEventListener('change', this.onFileUpload);
       document.getElementById('add_step').parentElement.insertBefore(clone,document.getElementById('add_step'));
       this.sections = [
-        {value:'Hobbies', label: this.ui.hobbies},
-        {value:'Apartment',label: this.ui.apartment},
-        {value:'Sport',label: this.ui.sport},
-        {value:'Internet',label: this.ui.internet},
-        {value:'Auto',label: this.ui.auto},
-        {value:'Health',label: this.ui.health},
-        {value:'Food',label: this.ui.food},
-        {value:'Fashion',label: this.ui.fashion},
-        {value: 'Engineering',label: this.ui.engineering},
+        {value:'IT', label: this.ui.it},
+        {value:'HR',label: this.ui.hr},
+        {value:'Tech',label: this.ui.tech},
+        {value:'Finance',label: this.ui.finance},
+        {value:'Legal',label: this.ui.legal},
         {value: 'Other',label: this.ui.other}
       ];
     },1000);

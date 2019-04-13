@@ -165,3 +165,8 @@ p {
 /deep/ .tooltip-arrow {
     border-bottom: 7px solid #007bff !important;
 }
+mat-form-field {
+    margin-left: 2.5rem;
+    margin-top: -10px;
+    width: calc(100% - 2.5rem);
+}

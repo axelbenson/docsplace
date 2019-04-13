@@ -10,12 +10,18 @@ import { Response } from '../response';
 import { LocalizationService } from '../localization.service';
 import { Localization } from '../localization';
 
+export interface Section {
+  value: string;
+  label: any;
+}
+
 @Component({
   selector: 'app-user',
   templateUrl: './user.component.html',
   styleUrls: ['./user.component.scss']
 })
 export class UserComponent implements OnInit {
+  sections: Section[];
   ui: Localization;
   userCard: UserProfile;
   postCards: PostCard[];
@@ -28,6 +34,7 @@ export class UserComponent implements OnInit {
   star: boolean;
   beginner: boolean;
   commentator: boolean;
+  departmentLocal: string;
 
   constructor(
     
@@ -70,6 +77,16 @@ export class UserComponent implements OnInit {
     this.getUser();
     this.getPostCards();
 
+    setTimeout(()=> {
+      this.sections = [
+        {value:'IT', label: this.ui.it},
+        {value:'HR',label: this.ui.hr},
+        {value:'Tech',label: this.ui.tech},
+        {value:'Finance',label: this.ui.finance},
+        {value:'Legal',label: this.ui.legal},
+        {value: 'Other',label: this.ui.other}
+      ];
+    }, 1000);
   }
 
   getUser(): void {
@@ -90,6 +107,8 @@ export class UserComponent implements OnInit {
         if (this.currentUser == this.userCard.login) {
           this.self = true;
         }
+        this.department.setValue(this.userCard.department);
+        this.departmentLocal = this.localizationService.getCategory(this.userCard.department);
       });
   }
 
