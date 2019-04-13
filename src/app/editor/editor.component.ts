@@ -12,6 +12,8 @@ import { PostCard } from '../post-card';
 import { Step } from '../step';
 import { LocalizationService } from '../localization.service';
 import { Localization } from '../localization';
+import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import { ChangeEvent } from '@ckeditor/ckeditor5-angular/ckeditor.component';
 
 
 export interface Section {
@@ -29,6 +31,15 @@ export interface Tag {
   styleUrls: ['./editor.component.scss']
 })
 export class EditorComponent implements OnInit {
+  public Editor = ClassicEditor;
+  public onChange( { editor }: ChangeEvent ) {
+    this.markdown.setValue(editor.getData());
+  }
+  public config = {
+    language: localStorage.getItem('language') || 'en',
+    placeholder: '...'
+  };
+
   ui: Localization;
   sections: Section[];
   
@@ -57,7 +68,7 @@ export class EditorComponent implements OnInit {
   section = new FormControl('', Validators.required );
   short = new FormControl('', [Validators.required, Validators.maxLength(150)] );
   full = new FormControl('', Validators.required );
-  needed = new FormControl('');
+  markdown = new FormControl('');
   videoLink = new FormControl('');
 
   ngOnInit() {
@@ -109,6 +120,7 @@ export class EditorComponent implements OnInit {
       if (this.post.author != this.currentUser) {
         this.router.navigate(['/main']);
       }
+      this.section.setValue(this.post.category);
       this.getSteps(data.post_id, data.numSteps);
     });
   }
@@ -174,11 +186,6 @@ export class EditorComponent implements OnInit {
     } else {
       this.formData.append('full', this.full.value);
     }
-    if (!this.needed.value){
-      this.formData.append('needed', this.post.ingredients);
-    } else {
-      this.formData.append('needed', this.needed.value);
-    }
     if (!this.section.value){
       this.formData.append('section', this.post.category);
     } else {
@@ -188,6 +195,11 @@ export class EditorComponent implements OnInit {
       this.formData.append('videoLink', this.post.videoLink);
     } else {
       this.formData.append('videoLink', this.videoLink.value);
+    }
+    if (!this.markdown.value) {
+      this.formData.append('instruction', this.post.instruction);
+    } else {
+      this.formData.append('instruction', this.markdown.value);
     }
     this.formData.append('numSteps', ''+this.post.numSteps);
     this.formData.append('author', localStorage.getItem('currentUser'));
@@ -206,7 +218,12 @@ export class EditorComponent implements OnInit {
       this.formData.append('stepName'+(a+1), node.value);
       document.getElementById('form-step-name').setAttribute('id','form1');
     }
-    
+
+    for (let a = 0; a < this.post.numSteps; a++) {
+      let node = <HTMLInputElement>(document.getElementById('form-step-videoLink'))
+      this.formData.append('stepVideoLink'+(a+1), node.value);
+        document.getElementById('form-step-videoLink').setAttribute('id','form1');
+    }
   
     this.httpService.editPost(this.formData).subscribe((data: Response)=> {
         if (data.error == "") {

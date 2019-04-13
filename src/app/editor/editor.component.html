@@ -10,35 +10,33 @@
     </div>
     
     <mat-form-field>
-        <mat-select placeholder="{{ui.chooseACategory}}" id='form-section' [formControl]="section" value="{{post.category}}">
+        <mat-select placeholder="{{ui.chooseACategory}}" id='form-section' [formControl]="section">
           <mat-option *ngFor="let section of sections" [value]="section.value">
             {{section.label}}
           </mat-option>
         </mat-select>
       </mat-form-field>
 
+    <div>{{ui.shortDescription}}:</div>
     <div class="md-form">
         <i class="fa fa-edit prefix grey-text"></i>
        <textarea type="text" id="form7" [formControl]="short" class="md-textarea md-textarea-auto form-control" mdbInputDirective value="{{post.description}}"></textarea>
-       <label for="form7"></label>
     </div> 
-    
+   
+    <div>{{ui.fullDescription}}:</div>
     <div class="md-form" id='full_desc'>
        <textarea type="text" id="form8" [formControl]="full" class="md-textarea md-textarea-auto form-control" mdbInputDirective value="{{post.fullDescription}}"></textarea>
-       <label for="form8"></label>
     </div> 
 
-    <div class="md-form" >
-        <i class="fa fa-cart-plus prefix grey-text"></i>
-        <textarea type="text" id="form9" [formControl]="needed" value="{{post.ingredients}}" mdbInputDirective></textarea>
-        <label for="form9"></label>
-     </div> 
-
-     <div class="md-form">
+    <div>{{ui.youtubeLink}}:</div>
+    <div class="md-form">
         <i class="fa fa-youtube prefix grey-text"></i>
         <input type="text" [formControl]="videoLink" id="form-videoLink" class="form-control" value="{{post.videoLink}}" mdbInputDirective>
-        <label for="form-videoLink"></label>
     </div>
+
+    <input type="text" style="display: none" [formControl]="markdown" id="form-markdown" class="form-control" mdbInputDirective>
+    <ckeditor [config]="config" [editor]="Editor" data="{{post.instruction}}" (change)="onChange($event)"></ckeditor>
+    <br/>
      
      <img id="step_img" class='img-fluid view view-cascade overlay' src="{{post.picture}}">
      <div class="text-center">
@@ -52,44 +50,51 @@
     </div>
 
     <mat-vertical-stepper #stepper></mat-vertical-stepper>
-    <div id="step" class='animated slideInRight' *ngFor='let step of steps'> 
-        <mat-expansion-panel id='panel'>
-            <mat-expansion-panel-header class="mat-expansion-panel-header ng-tns-c10-5" id="head" role="button">
-              <mat-panel-title>
-                  <div ng-reflect-ng-switch="number" class="mat-step-icon" id='circle'>
-                      <span class="ng-star-inserted">{{step.number}}</span>
-                  </div>   
-              </mat-panel-title>
-              <mat-panel-description>
-                  <div class="md-form" id='stepp'>
-                      <input type="text" id="form-step-name" value="{{step.title}}" class="form-control" (keydown)="handleSpacebar($event)" mdbInputDirective>
-                  </div>
-              </mat-panel-description>
-            </mat-expansion-panel-header>
-          </mat-expansion-panel>
-        
-          <div class="mat-vertical-content-container mat-stepper-vertical-line">
-              <div class="mat-vertical-stepper-content ">
-                <div class="mat-vertical-content">
-                  <div class="ng-star-inserted">
-                      <div class="md-form" id='step_desc'>
-                          <textarea type="text" id="form10" name='step_desc' value="{{step.text}}" class="md-textarea md-textarea-auto form-control" (keyup)='autogrow($event)' mdbInputDirective></textarea>
-                       </div> 
-                       <img id="step_img" class='img-fluid view view-cascade overlay' src="{{step.picture}}">
-                       <div class="text-center">
-                          <div class="form-group file-area">
-                              <input type="file" name='pic' step='{{step.number}}' (change)="onFileUpload($event)"/>
-                              <div class="file-dummy">
-                                <div class="success" hidden>{{ui.canContinue}}</div>
-                                <div class="default">{{ui.chooseAPicture}}</div>
+    <div *ngIf='steps[0]'>
+            <div id="step" class='animated slideInRight' *ngFor='let step of steps'> 
+                    <mat-expansion-panel id='panel'>
+                        <mat-expansion-panel-header class="mat-expansion-panel-header ng-tns-c10-5" id="head" role="button">
+                          <mat-panel-title>
+                              <div ng-reflect-ng-switch="number" class="mat-step-icon" id='circle'>
+                                  <span class="ng-star-inserted">{{step.number}}</span>
+                              </div>   
+                          </mat-panel-title>
+                          <mat-panel-description>
+                              <div class="md-form" id='stepp'>
+                                  <input type="text" id="form-step-name" value="{{step.title}}" class="form-control" (keydown)="handleSpacebar($event)" mdbInputDirective>
                               </div>
-                          </div>
-                      </div> 
+                          </mat-panel-description>
+                        </mat-expansion-panel-header>
+                      </mat-expansion-panel>
+                    
+                      <div class="mat-vertical-content-container mat-stepper-vertical-line">
+                          <div class="mat-vertical-stepper-content ">
+                            <div class="mat-vertical-content">
+                              <div class="ng-star-inserted">
+                                  <div class="md-form" id='step_desc'>
+                                      <textarea type="text" id="form10" name='step_desc' value="{{step.text}}" class="md-textarea md-textarea-auto form-control" (keyup)='autogrow($event)' mdbInputDirective></textarea>
+                                   </div> 
+                                   <img id="step_img" class='img-fluid view view-cascade overlay' src="{{step.picture}}">
+                                   <div class="text-center">
+                                      <div class="form-group file-area">
+                                          <input type="file" name='pic' step='{{step.number}}' (change)="onFileUpload($event)"/>
+                                          <div class="file-dummy">
+                                            <div class="success" hidden>{{ui.canContinue}}</div>
+                                            <div class="default">{{ui.chooseAPicture}}</div>
+                                          </div>
+                                      </div>
+                                  </div>
+                                  <p>{{ui.youtubeLink}}:</p>
+                                    <div class="md-form">
+                                        <i class="fa fa-youtube prefix grey-text"></i>
+                                        <input type="text" id="form-step-videoLink" value="{{step.video_link}}" class="form-control" mdbInputDirective>
+                                    </div> 
+                                </div>
+                              </div>
+                            </div>
+                      </div>
                     </div>
-                  </div>
-                </div>
-          </div>
-        </div>
+    </div>
         <p-progressBar mode="indeterminate" [style]="{'height': '6px'}" *ngIf='wait'></p-progressBar>
         <div id='button'>
             <button mdbBtn color="blue" class="waves-light" id='button' (click)="send()" mdbWavesEffect>{{ui.finish}}</button>

@@ -5,4 +5,5 @@ export class Step {
     title: string;
     picture: string;
     text: string;
+    video_link: string;
   }

@@ -89,6 +89,7 @@ export class Localization {
 	"setSuperUser": string;
 	"video": string;
 	"youtubeLink": string;
+	"variantMessage": string;
 }
 
 

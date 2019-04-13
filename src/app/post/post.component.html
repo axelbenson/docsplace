@@ -30,14 +30,11 @@
           <div class='bottom-line'>
               <a pageScroll href="#description" class="list-group-item waves-light" mdbWavesEffect>{{ui.description}}</a>
           </div>
-          <div class='bottom-line' *ngIf='post.ingredients'>
-              <a pageScroll href="#ingredients" class="list-group-item waves-light" mdbWavesEffect>{{ui.ingredients}}</a>
-          </div>
           <div class='bottom-line' *ngIf='post.videoLink'>
               <a pageScroll href="#video" class="list-group-item waves-light" mdbWavesEffect>{{ui.video}}</a>
            </div>
           
-          <div *ngIf='steps[0].number'>
+          <div>
             <div *ngFor='let step of steps' class='bottom-line'>
               <a pageScroll  href="#{{step.number}}" class="list-group-item waves-light" mdbWavesEffect>{{step.title}}</a>
             </div>
@@ -81,25 +78,17 @@
         <hr/>
         <p>{{post.fullDescription}}</p>
 
-        <div *ngIf='steps[0].number'>
+        <div *ngIf="steps[0]">
           <br/>
           <h5>{{ui.agenda}}</h5>
           <hr/>
               
           <div class="list-group">
-            <a pageScroll href="#ingredients" class="list-group-item waves-light" *ngIf='post.ingredients' mdbWavesEffect>{{ui.ingredients}}</a>
             <a pageScroll href="#video" class="list-group-item waves-light" *ngIf='post.videoLink' mdbWavesEffect>{{ui.video}}</a>
             <a pageScroll *ngFor='let step of steps'  href="#{{step.number}}" class="list-group-item waves-light" mdbWavesEffect>{{step.title}}</a>
             <a pageScroll href="#comments" class="list-group-item waves-light" mdbWavesEffect>{{ui.comments}}</a>
           </div>
         </div>
-          <br/>
-          <div *ngIf='post.ingredients'>
-              <h5 id='ingredients'>{{ui.ingredients}}</h5>
-              <hr/>
-      
-              <p>{{post.ingredients}}</p>
-          </div>
        
           <br/>
           <div *ngIf='post.videoLink'>
@@ -114,12 +103,17 @@
         
         
                 
-        <br/>
-        <h5 *ngIf='steps[0].number' id='ingredients'>{{ui.instruction}}</h5>
-        <hr/>      
+        <div *ngIf="steps[0] || post.instruction">
+            <br/>
+            <h5 id='ingredients'>{{ui.instruction}}</h5>
+            <hr *ngIf='post.instruction'/>
+            <div *ngIf='post.instruction' [innerHTML]="post.instruction"></div>
+            
+        </div>
+        <hr/>
         <mat-vertical-stepper #stepper></mat-vertical-stepper>
            
-        <div *ngFor='let step of steps' id='{{step.number}}' (click)="toggle($event)"> 
+        <div *ngFor='let step of steps; trackBy: trackByFn' id='{{step.number}}' (click)="toggle($event)"> 
           <mat-expansion-panel id='panel' *ngIf='steps[0].number'>
               <mat-expansion-panel-header>
                 <mat-panel-title>
@@ -138,14 +132,22 @@
                 <div class="mat-vertical-stepper-content ">
                   <div class="mat-vertical-content">
                     <div class="ng-star-inserted">
-                    <p> {{step.text}}</p>
-                    <br/>
-                    <p class="text-center">
-                      <img id="step_img" class='img-fluid view view-cascade overlay' src="{{step.picture}}"></p>
-                      <br/>
+                      <div *ngIf='step.text'>
+                        <p> {{step.text}}</p>
+                        <br/>
+                      </div>
+                      <div *ngIf='step.picture'>
+                        <p class="text-center">
+                          <img id="step_img" class='img-fluid view view-cascade overlay' src="{{step.picture}}">
+                        </p>
+                        <br/>
+                      </div>
+                      <div *ngIf='step.video_link' class="embed-responsive embed-responsive-16by9">
+                        <iframe class="embed-responsive-item" [src]="step.video_link | safe" allowfullscreen></iframe>
                       </div>
                     </div>
                   </div>
+                </div>
             </div>
           </div>
 

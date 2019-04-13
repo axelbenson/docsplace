@@ -11,7 +11,8 @@
 			"number" => $step[2],
 			"title" => $step[3],
 			"text" => $step[4],
-			"picture" => $step[5]
+			"picture" => $step[5],
+			"video_link" => $step[6]
 	];
 	}
 	
