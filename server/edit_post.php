@@ -57,7 +57,7 @@ if (isset($_POST['name'])) {
 					                    $func = 'image'.$ext;
 					                    return $func($img_o, $image);
 					                }   
-					    $uploaddir = 'img/pictures/';
+					    $uploaddir = 'docsplace/pictures/';
 					    $ext = pathinfo($_FILES['file0']['name'], PATHINFO_EXTENSION);
 					    $file = "https://res.cloudinary.com/howtoru/image/upload/".$uploaddir.$_POST['author']."_".str_replace(" ", "_", $_POST['name']);
 					    $mask = rand();
@@ -99,7 +99,7 @@ if (isset($_POST['name'])) {
 							if(in_array(strtolower($ext), $allowed)) 
 							{
 								$mask = rand();
-								$uploaddir = 'img/pictures/';
+								$uploaddir = 'docsplace/pictures/';
 								\Cloudinary\Uploader::upload($_FILES['file'.$a]['tmp_name'], 
 						    	array("folder" => $uploaddir, "public_id" => $_POST['author']."_".str_replace(" ", "_", $_POST['name'])."_".$a."_".$mask));
 						    	$pic = "https://res.cloudinary.com/howtoru/image/upload/img/pictures/".$_POST['author']."_".str_replace(" ", "_", $_POST['name'])."_".$a."_".$mask;

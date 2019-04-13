@@ -178,7 +178,7 @@ $response = [
                     $func = 'image'.$ext;
                     return $func($img_o, $image);
                 }   
-                $uploaddir = 'img/users/';
+                $uploaddir = 'docsplace/users/';
                 $ext = pathinfo($_FILES['file']['name'], PATHINFO_EXTENSION);
                 $uploadfile = $login .".". $ext;
                 $size = getimagesize ($_FILES['file']['tmp_name']);
@@ -216,11 +216,11 @@ $response = [
                     exit();
                 }else{
                  
-                    $subject = "Подтверждение почты на сайте HowTo";
+                    $subject = "Подтверждение почты в системе DocsPlace";
                     $subject = "=?utf-8?B?".base64_encode($subject)."?=";
                  
                     //Составляем тело сообщения
-                    $message = 'Здравствуйте! <br/> <br/> Сегодня, '.date("d.m.Y", time()).', этот E-Mail был использован при регистрации на сайте HowTo. Если это были Вы, то, пожалуйста, перейдите по этой ссылке и войдите в свой аккаунт: <a href="'.$address_site.'/activation.php?token='.$token.'&email='.$email.'">'.$address_site.'/activation/'.$token.'</a> <br/> <br/> Если это были не Вы, то просто игнорируйте это письмо.';
+                    $message = 'Здравствуйте! <br/> <br/> Сегодня, '.date("d.m.Y", time()).', этот E-Mail был использован при регистрации в системе DocsPlace. Если это были Вы, то, пожалуйста, перейдите по этой ссылке и войдите в свой аккаунт: <a href="'.$address_site.'/activation.php?token='.$token.'&email='.$email.'">'.$address_site.'/activation/'.$token.'</a> <br/> <br/> Если это были не Вы, то просто игнорируйте это письмо.';
                      
                     $headers = "FROM: $email_admin\r\nReply-to: $email_admin\r\nContent-type: text/html; charset=utf-8\r\n";
                      

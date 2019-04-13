@@ -28,7 +28,7 @@ if ($_POST['name']!='') {
 
 				if(!in_array(strtolower($ext), $allowed)) 
 				{
-				  $uploadfile = "https://res.cloudinary.com/howtoru/image/upload/img/pictures/default.jpg";
+				  $uploadfile = "https://res.cloudinary.com/howtoru/image/upload/docsplace/placeholders/".$_POST['section'].".jpg";
 				} else {
 				                function crop($image, $x_o, $y_o, $w_o, $h_o) {
 				                    list($w_i, $h_i, $type) = getimagesize($image);
@@ -47,7 +47,7 @@ if ($_POST['name']!='') {
 				                    $func = 'image'.$ext;
 				                    return $func($img_o, $image);
 				                }   
-				    $uploaddir = 'img/pictures/';
+				    $uploaddir = 'docsplace/pictures/';
 				    $ext = pathinfo($_FILES['file0']['name'], PATHINFO_EXTENSION);
 				    $file = "https://res.cloudinary.com/howtoru/image/upload/".$uploaddir.$_POST['author']."_".str_replace(" ", "_", $_POST['name']);
 				    $uploadfile = $file .".". $ext;
@@ -102,7 +102,7 @@ if ($_POST['name']!='') {
 							{
 								\Cloudinary\Uploader::upload($_FILES['file'.$a]['tmp_name'], 
 						    	array("folder" => $uploaddir, "public_id" => $_POST['author']."_".str_replace(" ", "_", $_POST['name'])."_".$a));
-						    	$pic = "https://res.cloudinary.com/howtoru/image/upload/img/pictures/".$_POST['author']."_".str_replace(" ", "_", $_POST['name'])."_".$a;
+						    	$pic = "https://res.cloudinary.com/howtoru/image/upload/docsplace/pictures/".$_POST['author']."_".str_replace(" ", "_", $_POST['name'])."_".$a;
 							}
 							file_put_contents('post_id.txt', $post_id." ".$pic);
 							$stepName = $_POST['stepName'.$a];

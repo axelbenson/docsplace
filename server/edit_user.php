@@ -48,7 +48,7 @@ if (isset($_POST['id'])) {
 					                    $func = 'image'.$ext;
 					                    return $func($img_o, $image);
 					                }   
-									$uploaddir = 'img/users/';
+									$uploaddir = 'docsplace/users/';
 					                $mask = rand();
 					                $ext = pathinfo($_FILES['file']['name'], PATHINFO_EXTENSION);
 					                $uploadfile = $login ."_".$mask.".".$ext;
@@ -83,12 +83,12 @@ if (isset($_POST['id'])) {
 				}
 
 			} else {
-				$response['error'] = "Отсутствует местоположение!";
+				$response['error'] = "Отсутствует отдел!";
 			    echo json_encode( $response );
 			    exit();
 			}
 		} else {
-			$response['error'] = "Отсутствует возраст!";
+			$response['error'] = "Отсутствует стаж!";
 		    echo json_encode( $response );
 		    exit();
 		}
