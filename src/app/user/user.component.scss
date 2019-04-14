@@ -16,10 +16,11 @@ img {
     cursor: pointer;
 }
 #user:hover h5{
-    color: #007bff;
+    color: #000;
+    font-weight: bolder;
 }
 #user:hover{
-    border-bottom: 2px solid #007bff;
+    border-bottom: 2px solid #000;
 }
 #page {
     margin: 0 auto;
@@ -60,17 +61,17 @@ p {
 @keyframes ui-progress-spinner-color {
     100%,
     0% {
-        stroke: #0057e7;
+        stroke: #000;
     }
     40% {
-        stroke: #0057e7;
+        stroke: #000;
     }
     66% {
-        stroke: #0057e7;
+        stroke: #000;
     }
     80%,
     90% {
-        stroke: #0057e7;
+        stroke: #000;
     }
 }
 #spinner {
@@ -160,10 +161,10 @@ p {
     margin-top: -93px !important;
 }
 /deep/ .tooltip-inner {
-    background-color: #007bff !important;
+    background-color: #000 !important;
 }
 /deep/ .tooltip-arrow {
-    border-bottom: 7px solid #007bff !important;
+    border-bottom: 7px solid #000 !important;
 }
 mat-form-field {
     margin-left: 2.5rem;

@@ -12,6 +12,47 @@ body {
 /deep/body .ui-widget {
   font-size: 20px !important;
 }
+.navbar {
+  &.scrolling-navbar {
+    background-color: black !important;
+  }
+}
+footer {
+  &.footer-copyright {
+    background-color: black !important;
+  }
+}
+body {
+  a {
+    color: black;
 
-@import "~@angular/material/prebuilt-themes/indigo-pink.css";
-@import "src/xoverlay.css";
+    &:hover {
+      color: black;
+    }
+  }
+  /deep/span {
+    &.text-danger,
+    &.text-success {
+      display: none !important;
+      visibility: hidden !important;
+    }
+  }
+  .mat-vertical-content {
+    p {
+      margin-top: 16px !important;
+    }
+  }
+  .ui-progressbar {
+    .ui-progressbar-value {
+      background: black !important;
+    }
+  }
+  /deep/label {
+    &.active {
+      color: black !important;
+    }
+  }
+  .editor-logo {
+    width: 80px;
+  }
+}

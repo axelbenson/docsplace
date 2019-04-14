@@ -196,7 +196,7 @@ $response = [
 
             
 
-            $result_query_insert = $mysqli->query("INSERT INTO `users` (login, name, email, password, experience, department, avatar) VALUES ('".$login."', '".$name."', '".$email."', '".$password."', '".$experience."','".$department."','https://res.cloudinary.com/howtoru/image/upload/img/users/".$uploadfile."')");
+            $result_query_insert = $mysqli->query("INSERT INTO `users` (login, name, email, password, experience, department, avatar) VALUES ('".$login."', '".$name."', '".$email."', '".$password."', '".$experience."','".$department."','https://res.cloudinary.com/howtoru/image/upload/docsplace/users/".$uploadfile."')");
 
 
             if(!$result_query_insert){
@@ -220,7 +220,7 @@ $response = [
                     $subject = "=?utf-8?B?".base64_encode($subject)."?=";
                  
                     //Составляем тело сообщения
-                    $message = 'Здравствуйте! <br/> <br/> Сегодня, '.date("d.m.Y", time()).', этот E-Mail был использован при регистрации в системе DocsPlace. Если это были Вы, то, пожалуйста, перейдите по этой ссылке и войдите в свой аккаунт: <a href="'.$address_site.'/activation.php?token='.$token.'&email='.$email.'">'.$address_site.'/activation/'.$token.'</a> <br/> <br/> Если это были не Вы, то просто игнорируйте это письмо.';
+                    $message = 'Здравствуйте! <br/> <br/> Сегодня, '.date("d.m.Y", time()).', этот E-Mail был использован при регистрации в системе DocsPlace. Если это были Вы, то, пожалуйста, перейдите по этой ссылке и войдите в свой аккаунт: <a href="'.$address_site.'/activation.php?token='.$token.'&email='.$email.'">Активировать аккаунт</a> <br/> <br/> Если это были не Вы, то просто игнорируйте это письмо.';
                      
                     $headers = "FROM: $email_admin\r\nReply-to: $email_admin\r\nContent-type: text/html; charset=utf-8\r\n";
                      

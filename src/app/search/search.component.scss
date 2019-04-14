@@ -16,19 +16,36 @@ hr {
 @keyframes ui-progress-spinner-color {
     100%,
     0% {
-        stroke: #0057e7;
+        stroke: #000;
     }
     40% {
-        stroke: #0057e7;
+        stroke: #000;
     }
     66% {
-        stroke: #0057e7;
+        stroke: #000;
     }
     80%,
     90% {
-        stroke: #0057e7;
+        stroke: #000;
     }
 }
 #spinner {
     padding-top: 50vh;
+}
+.toolbar {
+    position: absolute;
+    right: 20px;
+    top: 0;
+}
+i {
+    font-size: 25px;
+    margin: 0 5px;
+    cursor: pointer;
+    padding: 2px;
+    border-bottom: 1px solid transparent;
+
+    &.active,
+    &.sort-active {
+        border-bottom: 1px solid black;
+    }
 }

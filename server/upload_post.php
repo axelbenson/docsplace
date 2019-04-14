@@ -46,7 +46,7 @@ if ($_POST['name']!='') {
 				                    imagecopy($img_o, $img_i, 0, 0, $x_o, $y_o, $w_o, $h_o);
 				                    $func = 'image'.$ext;
 				                    return $func($img_o, $image);
-				                }   
+				                }  
 				    $uploaddir = 'docsplace/pictures/';
 				    $ext = pathinfo($_FILES['file0']['name'], PATHINFO_EXTENSION);
 				    $file = "https://res.cloudinary.com/howtoru/image/upload/".$uploaddir.$_POST['author']."_".str_replace(" ", "_", $_POST['name']);
@@ -69,9 +69,18 @@ if ($_POST['name']!='') {
 					$instruction = '';
 				}
 
-				if ($_POST['videoLink']=='') {
+				$_POST['name'] = mysql_real_escape_string($_POST['name']);
+				$_POST['hashtags'] = mysql_real_escape_string($_POST['hashtags']);
+				$_POST['tags'] = mysql_real_escape_string($_POST['tags']);
+				$_POST['short'] = mysql_real_escape_string($_POST['short']);
+				$_POST['full'] = mysql_real_escape_string($_POST['full']);
+				$instruction = mysql_real_escape_string($instruction);
+
+				if ($_POST['videoLink'] == '') {
+					file_put_contents('e7.txt', "INSERT INTO `instructions` (`name`, `author`, `category`, `hashtags`, `short_description`, `picture`, `full_description`, `instruction`, `date`, `num_steps`) VALUES ('".trim($_POST['name'])."', '".trim($_POST['author'])."', '".$_POST['section']."', '".$_POST['tags']."', '".$_POST['short']."','".$uploadfile."','".$_POST['full']."','".$instruction."','".$date."', '".$_POST['numSteps']."')");
 					$result = $mysqli->query("INSERT INTO `instructions` (`name`, `author`, `category`, `hashtags`, `short_description`, `picture`, `full_description`, `instruction`, `date`, `num_steps`) VALUES ('".trim($_POST['name'])."', '".trim($_POST['author'])."', '".$_POST['section']."', '".$_POST['tags']."', '".$_POST['short']."','".$uploadfile."','".$_POST['full']."','".$instruction."','".$date."', '".$_POST['numSteps']."')");
 				} else {
+					file_put_contents('e8.txt', 'here');
 					$link = str_replace("https://www.youtube.com/watch?v=", "https://www.youtube.com/embed/", $_POST['videoLink']);
 					if ($link == $_POST['videoLink']) {
 						$link = str_replace("https://youtu.be/", "https://www.youtube.com/embed/", $_POST['videoLink']);
@@ -81,6 +90,7 @@ if ($_POST['name']!='') {
 					}
 					$result = $mysqli->query("INSERT INTO `instructions` (`name`, `author`, `category`, `hashtags`, `short_description`, `picture`, `full_description`, `instruction`, `date`, `num_steps`, `video_link`) VALUES ('".trim($_POST['name'])."', '".trim($_POST['author'])."', '".$_POST['section']."', '".$_POST['tags']."', '".$_POST['short']."','".$uploadfile."','".$_POST['full']."','".$instruction."','".$date."', '".$_POST['numSteps']."', '".$link."')");
 				}
+				file_put_contents('e9.txt', 'here');
 
 				if (!$result) {
 					$response['error'] = "Ошибка при загрузке в БД!";
@@ -115,6 +125,8 @@ if ($_POST['name']!='') {
 							$stepDesc = $_POST['stepDesc'.$a];
 							$stepVideoLink = $_POST['stepVideoLink'.$a];
 							$link = '';
+							$stepName = mysql_real_escape_string($stepName);
+							$stepDesc = mysql_real_escape_string($stepDesc);
 
 							if ($stepVideoLink != '') {
 								$link = str_replace("https://www.youtube.com/watch?v=", "https://www.youtube.com/embed/", $stepVideoLink);

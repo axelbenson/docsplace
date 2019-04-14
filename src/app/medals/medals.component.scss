@@ -1,9 +1,12 @@
 /deep/ .tooltip-inner {
-    background-color: #007bff !important;
+    background-color: #000 !important;
 }
 /deep/ .tooltip-arrow {
-    border-bottom: 7px solid #007bff !important;
+    border-bottom: 7px solid #000 !important;
 }
-img {
+.medal {
+    display: block;
+    height: calc((100vh - 150px) / 8);
+    margin: 0 auto;
     margin-bottom: 20px;
 }

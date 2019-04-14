@@ -1,6 +1,15 @@
-<section class='animated slideInUp' [hidden]='!isLoaded'>
+<section class='animated slideInUp' *ngIf='isLoaded'>
 <h4 class="text-center" id='posts'>{{ui.instructions}}</h4>
-<app-posts [(postCards)]="postCards"></app-posts>
+<div class="toolbar">
+    <i class="fas fa-sort-numeric-down sort-active" (click)="sortGridView($event, 'date-down')"></i>
+    <i class="fas fa-sort-numeric-up" (click)="sortGridView($event, 'date-up')"></i>
+    <i class="fas fa-sort-alpha-down" (click)="sortGridView($event, 'title-down')"></i>
+    <i class="fas fa-sort-alpha-up mr-4" (click)="sortGridView($event, 'title-up')"></i>
+    <i class="fas fa-th active" (click)="updateGridView($event)"></i>
+    <i class="fas fa-list" (click)="updateGridView($event)"></i>
+</div>
+<app-posts [(postCards)]="postCards" *ngIf='!gridView'></app-posts>
+<app-posts-horizontal [(postCards)]="postCards" *ngIf='gridView'></app-posts-horizontal>
 </section>
 <div class='text-center' id='spinner' *ngIf='!isLoaded'>
         <p-progressSpinner fill="white"></p-progressSpinner>

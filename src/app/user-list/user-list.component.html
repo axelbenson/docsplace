@@ -14,8 +14,8 @@
               <img src="{{userCard.avatar}}" class="rounded-circle z-depth-1 img-fluid" alt="Sample avatar">
           </div>
           <h5 class=" mt-2 mb-1">{{userCard.login}}</h5>
-          <p class="grey-text">{{userCard.name}}</p>
-          <p class="text-uppercase blue-text">
+          <p class="grey-text name-line">{{userCard.name}}, {{getDepartment(userCard.department)}}</p>
+          <p class="text-uppercase black-text">
               <strong>★ {{userCard.raiting}}</strong>
           </p>
         </a>

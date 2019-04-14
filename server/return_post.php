@@ -12,7 +12,7 @@
 			"description" => $instruction[5],
 			"raiting" => $instruction[6],
 			"date" => $instruction[7],
-			"fullDescription" => $instruction[8],
+			"fullDescription" => nl2br($instruction[8]),
 			"numSteps" => $instruction[9],
 			"videoLink" => $instruction[10],
 			"instruction" => $instruction[11]
