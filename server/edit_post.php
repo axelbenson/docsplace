@@ -35,6 +35,12 @@ if (isset($_POST['name'])) {
 					$instruction = '';
 				}
 
+				$_POST['name'] = mysql_real_escape_string($_POST['name']);
+				$_POST['tags'] = mysql_real_escape_string($_POST['tags']);
+				$_POST['short'] = mysql_real_escape_string($_POST['short']);
+				$_POST['full'] = mysql_real_escape_string($_POST['full']);
+				$instruction = mysql_real_escape_string($instruction);
+
 				if ($_FILES['file0']['name']) {
 
 
@@ -100,6 +106,8 @@ if (isset($_POST['name'])) {
 							$stepDesc = $_POST['stepDesc'.$a];
 							$stepVideoLink = $_POST['stepVideoLink'.$a];
 							$link = '';
+							$stepName = mysql_real_escape_string($stepName);
+							$stepDesc = mysql_real_escape_string($stepDesc);
 
 							$ext = pathinfo($_FILES['file'.$a]['name'], PATHINFO_EXTENSION);
 							$pic = '';

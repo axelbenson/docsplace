@@ -71,7 +71,7 @@ export class NavbarComponent implements OnInit {
     localStorage.setItem('su','');
     this.su = false;
     this.sharedService.IsUserLoggedIn.next(false);
-    this.router.navigate(['/']);
+    this.router.navigate(['/signup']);
   }
 
   leave() {

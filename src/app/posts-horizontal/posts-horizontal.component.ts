@@ -4,11 +4,11 @@ import { LocalizationService } from '../localization.service';
 import { Localization } from '../localization';
 
 @Component({
-  selector: 'app-posts',
-  templateUrl: './posts.component.html',
-  styleUrls: ['./posts.component.scss']
+  selector: 'app-posts-horizontal',
+  templateUrl: './posts-horizontal.component.html',
+  styleUrls: ['./posts-horizontal.component.scss']
 })
-export class PostsComponent implements OnInit {
+export class PostsHorizontalComponent implements OnInit {
   ui: Localization;
   postClass: string;
   @Input() postCards: PostCard[];
@@ -19,11 +19,6 @@ export class PostsComponent implements OnInit {
       this.ui = ui;
     });
     this.ui = this.localizationService.ui;
-    if (document.getElementById('top-users')) {
-      this.postClass = 'col-lg-4 col-md-6 mb-4';
-    } else {
-      this.postClass = 'col-lg-3 col-md-6 mb-4';
-    }
   }
 
   getCategory(category){

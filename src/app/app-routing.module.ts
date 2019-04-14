@@ -13,22 +13,23 @@ import { AdminComponent }  from './admin/admin.component';
 import { CategoryComponent }  from './category/category.component';
 import { SearchComponent }  from './search/search.component';
 import { SearchTagComponent }  from './search-tag/search-tag.component';
+import { ProtectorService }  from './protector.service';
 
 const routes: Routes = [
   { path: 'signup', component: RegistrationFormComponent },
   { path: 'signin', component: AuthorizationFormComponent },
-  { path: 'users', component: UserListComponent },
-  { path: 'main', component: MainComponent },
-  { path: 'admin', component: AdminComponent },
-  { path: 'editor/:id', component: EditorComponent },
-  { path: 'instructions', component: PostListComponent },
-  { path: 'user/:login', component: UserComponent },
-  { path: 'search', component: SearchComponent },
+  { path: 'users', component: UserListComponent, canActivate: [ProtectorService] },
+  { path: 'main', component: MainComponent, canActivate: [ProtectorService] },
+  { path: 'admin', component: AdminComponent, canActivate: [ProtectorService] },
+  { path: 'editor/:id', component: EditorComponent, canActivate: [ProtectorService] },
+  { path: 'instructions', component: PostListComponent, canActivate: [ProtectorService] },
+  { path: 'user/:login', component: UserComponent, canActivate: [ProtectorService] },
+  { path: 'search', component: SearchComponent, canActivate: [ProtectorService] },
   { path: '', redirectTo: '/main', pathMatch: 'full' },
-  { path: 'post/:id', component: PostComponent },
-  { path: 'category/:category', component: CategoryComponent },
-  { path: 'search/:tag', component: SearchTagComponent },
-  { path: 'constructor', component: ConstructorComponent }
+  { path: 'post/:id', component: PostComponent, canActivate: [ProtectorService] },
+  { path: 'category/:category', component: CategoryComponent, canActivate: [ProtectorService] },
+  { path: 'search/:tag', component: SearchTagComponent, canActivate: [ProtectorService] },
+  { path: 'constructor', component: ConstructorComponent, canActivate: [ProtectorService] }
 ];
 
 @NgModule({

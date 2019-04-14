@@ -11,7 +11,7 @@
                 <!--Featured image-->
                 <div class="view overlay rounded z-depth-2 mb-2 waves-light" mdbWavesEffect>
                 <a routerLink='/constructor'>
-                    <img src="https://res.cloudinary.com/howtoru/image/upload/img/plus3.png" class="img-fluid" > 
+                    <img src="https://res.cloudinary.com/howtoru/image/upload/docsplace/plus.png" class="img-fluid" > 
                 </a>
                 </div>
                 <!--Excerpt-->
@@ -37,7 +37,7 @@
             </div>
             <a routerLink='/post/{{postCard.post_id}}'>
             <!--Excerpt-->
-            <a href="" class="blue-text" [routerLink]="['/category/',postCard.category]">
+            <a href="" class="black-text" [routerLink]="['/category/',postCard.category]">
                 <h6 class="mb-1 mt-3">
                     <strong>{{getCategory(postCard.category)}}</strong>
                 </h6>
@@ -46,10 +46,10 @@
                 <a>{{postCard.title}}</a>
             </h4>
             <p>
-                <a class="font-weight-bold blue-text" routerLink="/user/{{postCard.author}}">{{postCard.author}}</a>, {{postCard.date}}</p>
+                <a class="font-weight-bold black-text" routerLink="/user/{{postCard.author}}">{{postCard.author}}</a>, {{postCard.date}}</p>
             <p class="grey-text">{{postCard.description}}</p>
             <p>
-                <a class="font-weight-bold blue-text">★ {{postCard.raiting}}</a>
+                <a class="font-weight-bold black-text">★ {{postCard.raiting}}</a>
             </p>
         </a>
         </div>

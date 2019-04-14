@@ -65,16 +65,16 @@
     </div>
     <p-progressBar mode="indeterminate" [style]="{'height': '6px', 'margin':'0 auto', 'width': '400px'}" *ngIf='wait'></p-progressBar>
     <div class="text-center">
-        <button mdbBtn color="blue" class="waves-light" id='button' (click)="send()" mdbWavesEffect>{{ui.signUp}}</button>
+        <button mdbBtn color="dark" class="waves-light" id='button' (click)="send()" mdbWavesEffect>{{ui.signUp}}</button>
     </div>
     <p-toast position="bottom-center" life='10000'></p-toast>
     </div>
     <div class='col-md-6 align-middle' id='info'>
       <p class='text-center'>{{ui.greetingsLine1}}</p>
       <p class='text-center'>{{ui.greetingsLine2}}</p>
-      <p class='text-center'>{{ui.greetingsLine3}}</p>
-      <p class='text-center'><img id='profile' src='https://res.cloudinary.com/howtoru/image/upload/img/profile.png'/></p>
+      <p class='text-center bolder'>{{ui.greetingsLine3}}</p>
       <p class='text-center'>{{ui.greetingsLine4}}</p>
+      <p class='text-center'><img id='profile' src='https://res.cloudinary.com/howtoru/image/upload/docsplace/profile.png'/></p>
       <p class='text-center'>{{ui.greetingsLine5}}</p>
     </div>
   </div>

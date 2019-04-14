@@ -55,6 +55,7 @@ import {InputSwitchModule} from 'primeng/inputswitch';
 import { FormsModule } from '@angular/forms';
 import { SafePipe } from './post/post.component';
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
+import { PostsHorizontalComponent } from './posts-horizontal/posts-horizontal.component';
 
 
 @NgModule({
@@ -83,7 +84,8 @@ import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
     MyTagCloudComponent,
     SearchTagComponent,
     MedalsComponent,
-    FooterComponent
+    FooterComponent,
+    PostsHorizontalComponent
   ],
   imports: [
     CKEditorModule,

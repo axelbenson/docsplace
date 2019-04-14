@@ -7,7 +7,7 @@
 
         <!--Grid column-->
         <h4 class="text-center black-text uppercase" *ngIf="postCards.length == 0">{{ui.noInstructionsYet}}</h4>
-        <div class="col-lg-3 col-md-6 mb-4" *ngFor="let postCard of postCards" id='post'>
+        <div class="{{postClass}}" *ngFor="let postCard of postCards" id='post'>
             <a routerLink='/post/{{postCard.post_id}}'>
             <!--Featured image-->
             <div class="view overlay rounded z-depth-2 mb-2 waves-light" mdbWavesEffect>
@@ -18,7 +18,7 @@
             </div>
 
             <!--Excerpt-->
-            <a href="" class="blue-text" [routerLink]="['/category/',postCard.category]">
+            <a href="" class="black-text" [routerLink]="['/category/',postCard.category]">
                 <h6 class="mb-1 mt-3">
                     <strong>{{getCategory(postCard.category)}}</strong>
                 </h6>
@@ -27,10 +27,10 @@
                 <a>{{postCard.title}}</a>
             </h4>
             <p>
-                <a class="font-weight-bold blue-text" routerLink="/user/{{postCard.author}}">{{postCard.author}}</a>, {{postCard.date}}</p>
+                <a class="font-weight-bold black-text" routerLink="/user/{{postCard.author}}">{{postCard.author}}</a>, {{postCard.date}}</p>
             <p class="grey-text">{{postCard.description}}</p>
             <p>
-                <a class="font-weight-bold blue-text">★ {{postCard.raiting}}</a>
+                <a class="font-weight-bold black-text">★ {{postCard.raiting}}</a>
             </p>
         </a>
         </div>

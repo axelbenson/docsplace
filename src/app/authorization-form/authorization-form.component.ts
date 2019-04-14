@@ -6,6 +6,7 @@ import { MessageService } from 'primeng/api';
 import { SharedService } from '../shared.service';
 import { LocalizationService } from '../localization.service';
 import { Localization } from '../localization';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-authorization-form',
@@ -21,6 +22,7 @@ export class AuthorizationFormComponent implements OnInit {
   password = new FormControl('', [Validators.required, Validators.minLength(6)] );
 
   constructor(
+    private router: Router,
     private httpService: HttpService, 
     private messageService: MessageService,
     private sharedService: SharedService,
@@ -47,6 +49,7 @@ export class AuthorizationFormComponent implements OnInit {
         }
         this.hide_modal = true;
         this.sharedService.IsUserLoggedIn.next(true);
+        this.router.navigate(['/']);
       } else {
         this.messageService.add({severity:'error', summary:'Error', detail:data.error});
       }

@@ -30,19 +30,19 @@
 </div>
 <div id='medals'>
 	<div *ngIf='laurel'>
-		<img mdbTooltip="{{ui.laurel}}" placement="bottom" src="https://res.cloudinary.com/howtoru/image/upload/img/1.png" width="65" height="65" class="d-inline-block align-top" alt="">
+		<img mdbTooltip="{{ui.laurel}}" placement="bottom" src="https://res.cloudinary.com/howtoru/image/upload/docsplace/1.png" width="65" height="65" class="d-inline-block align-top" alt="">
 	</div>
 	<div *ngIf='champion'>
-		<img mdbTooltip="{{ui.champion}}" placement="bottom" src="https://res.cloudinary.com/howtoru/image/upload/img/4.png" width="65" height="65" class="d-inline-block align-top" alt="">
+		<img mdbTooltip="{{ui.champion}}" placement="bottom" src="https://res.cloudinary.com/howtoru/image/upload/docsplace/4.png" width="65" height="65" class="d-inline-block align-top" alt="">
 	</div>
 	<div *ngIf='star'>
-		<img mdbTooltip="{{ui.star}}" placement="bottom" src="https://res.cloudinary.com/howtoru/image/upload/img/5.png" width="65" height="65" class="d-inline-block align-top" alt="">
+		<img mdbTooltip="{{ui.star}}" placement="bottom" src="https://res.cloudinary.com/howtoru/image/upload/docsplace/5.png" width="65" height="65" class="d-inline-block align-top" alt="">
 	</div>
 	<div *ngIf='beginner'>
-		<img mdbTooltip="{{ui.beginner}}" placement="bottom" src="https://res.cloudinary.com/howtoru/image/upload/img/6.png" width="65" height="65" class="d-inline-block align-top" alt="">
+		<img mdbTooltip="{{ui.beginner}}" placement="bottom" src="https://res.cloudinary.com/howtoru/image/upload/docsplace/6.png" width="65" height="65" class="d-inline-block align-top" alt="">
 	</div>
 	<div *ngIf='commentator'>
-		<img mdbTooltip="{{ui.commentator}}" placement="bottom" src="https://res.cloudinary.com/howtoru/image/upload/img/7.png" width="65" height="65" class="d-inline-block align-top" alt="">
+		<img mdbTooltip="{{ui.commentator}}" placement="bottom" src="https://res.cloudinary.com/howtoru/image/upload/docsplace/7.png" width="65" height="65" class="d-inline-block align-top" alt="">
 	</div>            
 </div>
 <br/>
@@ -111,8 +111,8 @@
 
       <!--Footer-->
       <div class="modal-footer justify-content-center">
-        <a type="button" mdbBtn color="primary" class="waves-light" (click)='send()' mdbWavesEffect>{{ui.save}}</a>
-        <a type="button" mdbBtn color="primary" outline="true" class="waves-effect" data-dismiss="modal" mdbWavesEffect (click)="frame.hide()">{{ui.cancel}}</a>
+        <a type="button" mdbBtn color="dark" class="waves-light" (click)='send()' mdbWavesEffect>{{ui.save}}</a>
+        <a type="button" mdbBtn color="dark" outline="true" class="waves-effect" data-dismiss="modal" mdbWavesEffect (click)="frame.hide()">{{ui.cancel}}</a>
       </div>
       <p-progressBar mode="indeterminate" [style]="{'height': '6px'}" *ngIf='wait'></p-progressBar>
     </div>

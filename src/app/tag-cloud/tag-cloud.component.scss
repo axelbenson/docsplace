@@ -1,3 +1,36 @@
-angular-tag-cloud {
+/deep/angular-tag-cloud {
     cursor: pointer;
+
+    span {
+        &.w10 {
+            color: #000 !important;
+        }
+        &.w9 {
+            color: #161616 !important;
+        }
+        &.w8 {
+            color: rgb(43, 43, 43) !important;
+        }
+        &.w7 {
+            color: rgb(65, 65, 65) !important;
+        }
+        &.w6 {
+            color: rgb(77, 77, 77) !important;
+        }
+        &.w5 {
+            color: rgb(90, 90, 90) !important;
+        }
+        &.w4 {
+            color: rgb(107, 107, 107) !important;
+        }
+        &.w3 {
+            color: rgb(134, 134, 134) !important;
+        }
+        &.w2 {
+            color: rgb(155, 155, 155) !important;
+        }
+        &.w1 {
+            color: rgb(167, 167, 167) !important;
+        }
+    }
 }

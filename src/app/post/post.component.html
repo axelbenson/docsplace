@@ -15,7 +15,7 @@
                     </div>
                     <h5 class="mt-2 mb-1">{{user.login}}</h5>
                     <p class="grey-text">{{user.name}}, {{departmentLocal}}</p>
-                    <p class="text-uppercase blue-text" id='raiting'>
+                    <p class="text-uppercase black-text" id='raiting'>
                         <strong>★ {{user.raiting}}</strong>
                     </p>
                     </a>
@@ -32,7 +32,10 @@
           </div>
           <div class='bottom-line' *ngIf='post.videoLink'>
               <a pageScroll href="#video" class="list-group-item waves-light" mdbWavesEffect>{{ui.video}}</a>
-           </div>
+          </div>
+          <div class='bottom-line' *ngIf='post.instruction'>
+              <a pageScroll href="#instruction" class="list-group-item waves-light" mdbWavesEffect>{{ui.instruction}}</a>
+          </div>
           
           <div>
             <div *ngFor='let step of steps' class='bottom-line'>
@@ -58,7 +61,7 @@
         <mdb-card-body cascade="true" class="text-center" id='title'>
           <h4>{{post.title}}</h4>
           <p>{{ui.writtenBy}} <a routerLink="/user/{{user.login}}">{{user.login}}</a>, {{post.date}}</p>
-          <a [routerLink]="['/category/',post.category]"><p class="blue-text">{{categoryLocal}}</p></a>
+          <a [routerLink]="['/category/',post.category]"><p class="black-text">{{categoryLocal}}</p></a>
           <div *ngIf="!(liked || !isLoggedIn || (currentUser == post.author) )">
             <div class="stars" (click)='updateStars(1)'>★</div>
             <div class="stars" (click)='updateStars(2)'>★</div>
@@ -76,15 +79,16 @@
       <div class="excerpt mt-5">   
         <h5 id='description'>{{ui.description}}</h5>
         <hr/>
-        <p>{{post.fullDescription}}</p>
+        <p [innerHTML]="post.fullDescription"></p>
 
         <div *ngIf="steps[0]">
           <br/>
           <h5>{{ui.agenda}}</h5>
           <hr/>
-              
+          
           <div class="list-group">
             <a pageScroll href="#video" class="list-group-item waves-light" *ngIf='post.videoLink' mdbWavesEffect>{{ui.video}}</a>
+            <a pageScroll href="#instruction" class="list-group-item waves-light" *ngIf='post.instruction' mdbWavesEffect>{{ui.instruction}}</a>
             <a pageScroll *ngFor='let step of steps'  href="#{{step.number}}" class="list-group-item waves-light" mdbWavesEffect>{{step.title}}</a>
             <a pageScroll href="#comments" class="list-group-item waves-light" mdbWavesEffect>{{ui.comments}}</a>
           </div>
@@ -105,7 +109,7 @@
                 
         <div *ngIf="steps[0] || post.instruction">
             <br/>
-            <h5 id='ingredients'>{{ui.instruction}}</h5>
+            <h5 id='instruction'>{{ui.instruction}}</h5>
             <hr *ngIf='post.instruction'/>
             <div *ngIf='post.instruction' [innerHTML]="post.instruction"></div>
             

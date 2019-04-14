@@ -2,11 +2,11 @@
 <h4 class="text-center pt-4" id='posts'>{{ui.adminPage}}</h4>
 <br/>
 <div id='toolbar' class='text-center'>
-    <i class="fa fa-lock prefix blue-text"  mdbTooltip="{{ui.block}}" placement="bottom" (click)="action('block')"></i>
-    <i class="fa fa-unlock prefix blue-text" mdbTooltip="{{ui.unblock}}" placement="bottom" (click)="action('unblock')"></i>
-    <i class="fa fa-trash prefix blue-text" mdbTooltip="{{ui.delete}}" placement="bottom" (click)="action('delete')"></i>
-    <i class="fa fa-user-plus prefix blue-text" mdbTooltip="{{ui.setSuperUser}}" placement="bottom" (click)="action('su')"></i>
-    <i class="fa fa-user-times prefix blue-text"  mdbTooltip="{{ui.notSuperUser}}" placement="bottom" (click)="action('notsu')"></i>
+    <i class="fa fa-lock prefix black-text"  mdbTooltip="{{ui.block}}" placement="bottom" (click)="action('block')"></i>
+    <i class="fa fa-unlock prefix black-text" mdbTooltip="{{ui.unblock}}" placement="bottom" (click)="action('unblock')"></i>
+    <i class="fa fa-trash prefix black-text" mdbTooltip="{{ui.delete}}" placement="bottom" (click)="action('delete')"></i>
+    <i class="fa fa-user-plus prefix black-text" mdbTooltip="{{ui.setSuperUser}}" placement="bottom" (click)="action('su')"></i>
+    <i class="fa fa-user-times prefix black-text"  mdbTooltip="{{ui.notSuperUser}}" placement="bottom" (click)="action('notsu')"></i>
     <p-progressBar mode="indeterminate" [style]="{'height': '6px'}" *ngIf='wait'></p-progressBar>
 </div>
 <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">

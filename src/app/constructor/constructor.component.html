@@ -1,7 +1,13 @@
 <section class='animated slideInUp'>
-    <p><img src='https://res.cloudinary.com/howtoru/image/upload/v1534550394/img/logo.png'/></p>
+    <p><img class="editor-logo" src='https://res.cloudinary.com/howtoru/image/upload/docsplace/settings.png'/></p>
     <h4 class="text-center" id='posts'>{{ui.constructorTitle}} <strong>DocsPlace</strong></h4>
     
+    <div class="md-form" style='display: none'>
+            <i class="fa fa-user prefix grey-text"></i>
+            <input type="text"  id="form-name1" class="form-control" mdbInputDirective>
+            <label for="form-name1">{{ui.theNameOfInstruction}}</label>
+    </div>
+
     <div class="md-form">
         <i class="fa fa-user prefix grey-text"></i>
         <input type="text" [formControl]="name" id="form-name" class="form-control" mdbInputDirective>
@@ -142,7 +148,7 @@
         </div>
         <p-progressBar mode="indeterminate" [style]="{'height': '6px'}" *ngIf='wait'></p-progressBar>
         <div id='button'>
-            <button mdbBtn color="blue" class="waves-light" id='button' (click)="send()" mdbWavesEffect>{{ui.finish}}</button>
+            <button mdbBtn color="black" class="waves-light" id='button' (click)="send()" mdbWavesEffect>{{ui.finish}}</button>
         </div>
         <p-toast position="bottom-center" life='10000'></p-toast>
         <hr/>

@@ -31,4 +31,8 @@ export class UserListComponent implements OnInit {
     this.isLoaded = true;
     });
   }
+
+  getDepartment(department: string): string {
+    return this.localizationService.getCategory(department);
+  }
 }

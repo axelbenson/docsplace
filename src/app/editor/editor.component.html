@@ -1,5 +1,5 @@
 <section class='animated slideInUp' *ngIf='isLoaded'>
-    <p><img src='https://res.cloudinary.com/howtoru/image/upload/v1534550394/img/logo.png'/></p>
+    <p><img class="editor-logo" src='https://res.cloudinary.com/howtoru/image/upload/docsplace/settings.png'/></p>
     <h4 class="text-center" id='posts'>{{ui.editYourInstruction}}</h4>
     <p id='info'>{{ui.editorMessage}}</p>
     
@@ -97,7 +97,7 @@
     </div>
         <p-progressBar mode="indeterminate" [style]="{'height': '6px'}" *ngIf='wait'></p-progressBar>
         <div id='button'>
-            <button mdbBtn color="blue" class="waves-light" id='button' (click)="send()" mdbWavesEffect>{{ui.finish}}</button>
+            <button mdbBtn color="dark" class="waves-light" id='button' (click)="send()" mdbWavesEffect>{{ui.finish}}</button>
         </div>
         <p-toast position="bottom-center" life='10000'></p-toast>
         <hr/>

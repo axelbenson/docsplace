@@ -16,17 +16,17 @@ hr {
 @keyframes ui-progress-spinner-color {
     100%,
     0% {
-        stroke: #0057e7;
+        stroke: #000;
     }
     40% {
-        stroke: #0057e7;
+        stroke: #000;
     }
     66% {
-        stroke: #0057e7;
+        stroke: #000;
     }
     80%,
     90% {
-        stroke: #0057e7;
+        stroke: #000;
     }
 }
 #spinner {
@@ -59,10 +59,11 @@ p {
    // box-shadow:0px 0px 10px rgba(0,0,0,0.3)
 }
 #user:hover #raiting {
-    border-bottom: 1px solid #007bff;
+    border-bottom: 1px solid #000;
 }
 #user:hover h5 {
-    color: #007bff;
+    color: #000;
+    font-weight: bolder;
 }
 h4 {
     width: 100%;
@@ -124,7 +125,7 @@ mdb-card {
     margin: 0 auto !important;
 }
 /deep/ .mat-step-header .mat-step-icon {
-    background-color: #007bff !important;
+    background-color: #000 !important;
 }
 #next {
     font-weight: 300;
@@ -132,7 +133,7 @@ mdb-card {
     width: 100%;
 }
 #circle {
-    background-color: #007bff !important;
+    background-color: #000 !important;
     color: #fff;
     border-radius: 50%;
     align-items: center;
@@ -169,7 +170,7 @@ mat-panel-description {
     position: sticky;
     top: 80px; 
     z-index: 999;
-    border-bottom: 2px solid #007bff;
+    border-bottom: 2px solid #000;
     width: 100%;
 }
 .h4-responsive {
@@ -201,11 +202,10 @@ mat-panel-description {
     color: red;
 }
 .stars:hover {
-    font-size: 31px;
-    color: #007bff;
+    color: #000;
 }
 #postRaiting {
-    color: #007bff;
+    color: #000;
     border: none;
 }
 @media only screen and (max-width: 1000px) {
@@ -220,5 +220,20 @@ mat-panel-description {
 /deep/mdb-card-img img{
     margin: 0 auto !important;
 }
-
+/deep/blockquote {
+    margin: 0;
+    color: #231E28;
+    padding: 10px 10px 10px 60px;
+    border-left: 8px solid #000;
+    position: relative;
+    background: rgb(241, 241, 241);
+    font-family: 'Lato', sans-serif;
+    font-weight: 300;
+}
+/deep/blockquote p {
+    font-style: italic;
+    font-size: 24px;
+    margin-top: 0;  
+    margin-bottom: 0;
+}
 

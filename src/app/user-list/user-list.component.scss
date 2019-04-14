@@ -11,15 +11,17 @@ img {
 #user {
     max-width: 250px;
     cursor: pointer;
+    border-bottom: 2px solid transparent;
 }
 #user:hover h5{
-    color: #007bff;
+    color: #000;
+    font-weight: bolder;
 }
 #user h5 {
     color: grey;
 }
 #user:hover{
-    border-bottom: 2px solid #007bff;
+    border-bottom: 2px solid #000;
 }
 .row {
     margin-left: 0px;
@@ -28,17 +30,17 @@ img {
 @keyframes ui-progress-spinner-color {
     100%,
     0% {
-        stroke: #0057e7;
+        stroke: #000;
     }
     40% {
-        stroke: #0057e7;
+        stroke: #000;
     }
     66% {
-        stroke: #0057e7;
+        stroke: #000;
     }
     80%,
     90% {
-        stroke: #0057e7;
+        stroke: #000;
     }
 }
 #spinner {
@@ -46,4 +48,8 @@ img {
 }
 h4 {
     text-transform: uppercase;
+}
+.name-line {
+    font-size: 12px;
+    margin-bottom: 0; 
 }

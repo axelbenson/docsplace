@@ -1,0 +1,45 @@
+<!--Section: Blog v.2-->
+<section class="text-center" id='posts'>
+    <!--Section description-->
+    <!--Grid row-->
+    <div class="row justify-content-center">
+
+        <!--Grid column-->
+        <h4 class="text-center black-text uppercase" *ngIf="postCards.length == 0">{{ui.noInstructionsYet}}</h4>
+        <div class="mb-2 mt-2" *ngFor="let postCard of postCards" id='post'>
+          <a routerLink='/post/{{postCard.post_id}}'>
+            <!--Featured image-->
+            <div class="view overlay rounded z-depth-2 mb-2 waves-light" mdbWavesEffect>
+                <img src="{{postCard.picture}}" class="img-fluid" alt="First sample image">
+                <a>
+                    <div class="mask rgba-white-slight"></div>
+                </a>
+            </div>
+
+            <!--Excerpt-->
+            <div class="post-info">
+              <div class="title-wrapper">
+                  <a class="black-text category-link" [routerLink]="['/category/',postCard.category]">
+                    <h6 class="mb-1 mt-2">
+                      <strong>{{getCategory(postCard.category)}}</strong>
+                    </h6>
+                  </a>
+                  <a class="font-weight-bold black-text raiting">★ {{postCard.raiting}}</a>
+                  <p class="date-wrapper"><a class="font-weight-bold black-text" routerLink="/user/{{postCard.author}}">{{postCard.author}}</a>, {{postCard.date}}</p>
+              </div>
+              <h4 class="mb-2" id='postTitle'>
+                <a>{{postCard.title}}</a>
+              </h4>
+              <p class="grey-text">{{postCard.description}}</p>
+            </div>
+          </a>
+        </div>
+        <!--Grid column-->
+
+      
+
+    </div>
+    <!--Grid row-->
+
+</section>
+<!--Section: Blog v.2-->
